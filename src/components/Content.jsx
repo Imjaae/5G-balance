@@ -71,6 +71,24 @@ export const Content = () => {
     setOnEdit(!onEdit);
   };
 
+  const onVoteChoiceOne = () => {
+    const edit = {
+      ...balance,
+      choice1Rate: balance.choice1Rate + 1,
+    };
+    axios.patch(`http://localhost:3001/balance/${id}`, edit);
+    setBalance(edit);
+  };
+
+  const onVoteChoiceTwo = () => {
+    const edit = {
+      ...balance,
+      choice2Rate: balance.choice2Rate + 1,
+    };
+    axios.patch(`http://localhost:3001/balance/${id}`, edit);
+    setBalance(edit);
+  };
+
   return (
     <div>
       <Header>
@@ -87,9 +105,9 @@ export const Content = () => {
         </div>
       </Header>
       <Section>
-        <Button>{balance.choice1}</Button>
+        <Button onClick={onVoteChoiceOne}>{balance.choice1}</Button>
         <span>VS</span>
-        <Button>{balance.choice2}</Button>
+        <Button onClick={onVoteChoiceTwo}>{balance.choice2}</Button>
       </Section>
       <Desc>
         {onEdit === true ? (
