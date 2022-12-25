@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 
-function Input({ setComments, isActive }) {
+function Input({ setComments }) {
   const [contents, setContents] = useState("");
+  const [nickname, setNickname] = useState("");
 
   const handleChangeBotton = (event) => {
     event.preventDefault();
@@ -11,9 +12,10 @@ function Input({ setComments, isActive }) {
     // console.log("event :", event.target[0].value);
 
     const newComments = {
-      nickName: "임재영",
+      nickName: nickname,
       contents: contents,
       id: uuidv4(),
+      // isDone: false(),
     };
 
     setComments((prev) => {
@@ -29,7 +31,6 @@ function Input({ setComments, isActive }) {
 
   return (
     <InputBox onSubmit={handleChangeBotton}>
-      제목 :
       <input
         onChange={handleChangeInput}
         value={contents}
@@ -47,5 +48,5 @@ const InputBox = styled.form`
   padding: 30px;
   margin: 30px;
   display: flex;
-  width: 90%;
+  width: 100%;
 `;

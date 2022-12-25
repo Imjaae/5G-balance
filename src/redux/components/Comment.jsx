@@ -18,8 +18,21 @@ export default Comment;
 
 const initialState = [
   {
-    nickName: "임재영",
-    contents: "댓글내용입니다",
+    nickName: "닉네임1",
+    contents: "댓글내용입니다1",
     id: uuidv4(),
+    // isDone: false(),
+  },
+  {
+    nickName: "닉네임2",
+    contents: "댓글내용입니다2",
+    id: uuidv4(),
+    // isDone: false(),
+  },
+  {
+    nickName: "닉네임3",
+    contents: "댓글내용입니다3",
+    id: uuidv4(),
+    // isDone: false(),
   },
 ];

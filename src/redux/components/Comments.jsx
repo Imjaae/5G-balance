@@ -1,7 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-function Comments({ comments, setComments }) {
+function Comments({ item, comments, setComments }) {
+  // 수정버튼 기능구현
+  // const updateComments = (event) => {
+  //   this.setComments({ [event.target.Comments]: event.target.value });
+  //   console.log(event);
+  // };
+
   return (
     <CommentsBox>
       {comments.map((item) => {
@@ -28,7 +34,13 @@ function Comments({ comments, setComments }) {
               {item.contents}
             </div>
             <button>수정</button>
-            <button>삭제</button>
+            <button
+              onClick={() => {
+                setComments((prev) => prev.filter((tt) => tt.id !== item.id));
+              }}
+            >
+              삭제
+            </button>
           </CommentBox>
         );
       })}
