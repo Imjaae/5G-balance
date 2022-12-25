@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "./Root";
 import { Auth } from "./page/Auth";
+import { CreatePost } from "./page/CreatePost";
 import { Detail } from "./page/Detail";
 import { NotFound } from "./page/NotFound";
 import { Home } from "./page/Home";
@@ -19,6 +20,10 @@ export const router = createBrowserRouter([
       {
         path: "balance/:id",
         element: <Detail />,
+      },
+      {
+        path: "createpost",
+        element: <CreatePost />,
       },
       {
         path: "auth",
