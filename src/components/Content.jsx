@@ -3,9 +3,9 @@ import styled from "styled-components";
 
 export default Content;
 
-function Content({ balance, setBlance }) {
+function Content({ balance, setBlance, handleContentsSubmit }) {
   const handleContentChange = (event) => {
-    setBlance({ ...balance, content: event.target.value });
+    setBlance({ ...balance, contents: event.target.value });
   };
   return (
     <>
@@ -14,8 +14,8 @@ function Content({ balance, setBlance }) {
         <input onChange={handleContentChange} />
         <br />
         <button
-          style={{
-            margin: "20px, 60px, 20px, 60px",
+          onClick={() => {
+            handleContentsSubmit();
           }}
         >
           게임 만들기

@@ -17,16 +17,16 @@ function Input({ balance, setBlance }) {
     <>
       <h3>밸런스를 작성해주세요.</h3>
       <p>(밸런스 문제 수정은 불가합니다.)</p>
-      <div style={inputStyleObj}>
+      <InputStyleObj>
         <input onChange={handleTitleAChange} />
         VS
         <input onChange={handleTitleBChange} />
-      </div>
+      </InputStyleObj>
     </>
   );
 }
 
-const inputStyleObj = styled.div`
+const InputStyleObj = styled.div`
   margin: 20px 50px 20px 50px;
   padding: 20px;
 `;
