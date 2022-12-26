@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import Input from "../components/Input";
 import Content from "../components/Content";
+import Nickname from "../components/Nickname";
 import Swal from "sweetalert2";
 
 const CreatePost = () => {
@@ -11,19 +12,21 @@ const CreatePost = () => {
     contents: "",
   };
 
-  const [balance, setBlance] = useState(initialState);
+  const [balance, setBalance] = useState(initialState);
   console.log(balance);
+  //닉네임과 비밀번호 input box 유효성 검증(아직 안 함.)
 
-  // 밸런스 게임 3가지 input box 유효성 검증
+  // 밸런스 게임 만들기, 설명 input box 유효성 검증
   const handleContentsSubmit = () => {
     const A = balance.titleA.length;
     const B = balance.titleB.length;
     const C = balance.contents.length;
+
     console.log(A, B, C);
     if (A < 1 || B < 1 || C < 1) {
       Swal.fire({
-        text: "한 글자 이상 적어주세요.",
         title: "빈 칸이 있습니다. 채워주세요.",
+        text: "한 글자 이상 적어주세요.",
         icon: "error",
         timer: 3000,
         showConfirmButton: false,
@@ -38,31 +41,24 @@ const CreatePost = () => {
 
   return (
     <>
+      <Header>5G = Balance</Header>
       <WWrap>
-        <Header>5G = Blance</Header>
         <Wrap
           style={{
             padding: "20px",
-            backgroundColor: "#d7a6f5",
           }}
         >
+          {/* 닉네임, 비밀번호 만들기 */}
+          <Nickname />
           {/* 밸런스 게임 만드는 2가지 박스 */}
-          <Input balance={balance} setBlance={setBlance} />
+          <Input balance={balance} setBalance={setBalance} />
           {/* 만든 게임을 설명하는 박스 */}
           <Content
             balance={balance}
-            setBlance={setBlance}
+            setBalance={setBalance}
             handleContentsSubmit={handleContentsSubmit}
           />
         </Wrap>
-        <footer
-          style={{
-            padding: "20px",
-            backgroundColor: "#e8c7fc",
-          }}
-        >
-          푸터입니다
-        </footer>
       </WWrap>
     </>
   );
