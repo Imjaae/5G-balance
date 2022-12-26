@@ -8,6 +8,7 @@ export const Bar = styled.div`
   display: flex;
   align-items: center;
   padding: 0 10px;
+  box-sizing: border-box;
   & span::after {
     content: "표";
   }

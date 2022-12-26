@@ -11,18 +11,27 @@ export const EditBalance = (props) => {
 
   const onEditDescBalance = (event) => {
     event.preventDefault();
-    const edit = {
-      ...props.balance,
-      choiceDesc: newDesc,
-    };
-    axios.patch(`http://localhost:3001/balance/${props.id}`, edit);
-    props.setOnEdit(false);
-    props.setBalance(edit);
+    if (document.querySelector(".newDesc").value.trim() === "") {
+      alert("설명은 1글자 이상, 30자 이내로 설정해 주세요.");
+      document.querySelector(".newDesc").focus();
+      return;
+    } else {
+      const edit = {
+        ...props.balance,
+        choiceDesc: newDesc,
+      };
+      props.setOnEdit(false);
+      return axios.patch("http://localhost:3001/balance/" + props.id, edit);
+    }
   };
 
   return (
     <form onSubmit={onEditDescBalance}>
-      <input onChange={onEditNewDesc} placeholder={props.value} />
+      <input
+        className="newDesc"
+        onChange={onEditNewDesc}
+        placeholder={props.value}
+      />
       <Button>확인</Button>
     </form>
   );
