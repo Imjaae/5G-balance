@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Root from "./Root";
 import { Auth } from "./page/Auth";
 import { Detail } from "./page/Detail";
-// import { NotFound } from "./page/NotFound";
+import { NotFound } from "./page/NotFound";
 import { Home } from "./page/Home";
 import { Signin } from "./page/Signin";
 import { Signup } from "./page/Signup";
@@ -33,6 +33,6 @@ export const router = createBrowserRouter([
         element: <Signup />,
       },
     ],
-    // errorElement: <NotFound />,
+    errorElement: <NotFound />,
   },
 ]);

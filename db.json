@@ -8,9 +8,20 @@
   ],
   "comments": [
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "contents": "테스트",
+      "id": 2
+    },
+    {
+      "contents": "테스트2",
+      "id": 3
+    },
+    {
+      "contents": "dasdawdasd",
+      "id": 4
+    },
+    {
+      "contents": "dsawdasd",
+      "id": 5
     }
   ],
   "profile": {

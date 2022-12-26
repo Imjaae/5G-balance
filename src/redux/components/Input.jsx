@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
@@ -6,17 +7,19 @@ function Input({ setComments }) {
   const [contents, setContents] = useState("");
   const [nickname, setNickname] = useState("");
 
-  const handleChangeBotton = (event) => {
-    event.preventDefault();
+  const onSubmitHandler = (contents, nickName) => {
+    axios.post("http://localhost:3001/comments", { contents, nickName });
 
     // console.log("event :", event.target[0].value);
 
     const newComments = {
-      nickName: nickname,
+      nickName: nickName,
       contents: contents,
       id: uuidv4(),
+      userid: "userid",
       // isDone: false(),
     };
+    console.log(newComments);
 
     setComments((prev) => {
       return [...prev, newComments];
@@ -30,8 +33,17 @@ function Input({ setComments }) {
   };
 
   return (
-    <InputBox onSubmit={handleChangeBotton}>
+    <InputBox
+      onSubmit={(e) => {
+        e.preventDefault();
+        onSubmitHandler(contents);
+      }}
+    >
       <input
+        style={{
+          width: "40%",
+          marginRight: "10px",
+        }}
         onChange={handleChangeInput}
         value={contents}
         placeholder="댓글을 작성해 주세요."
@@ -49,4 +61,5 @@ const InputBox = styled.form`
   margin: 30px;
   display: flex;
   width: 100%;
+  align-items: center;
 `;

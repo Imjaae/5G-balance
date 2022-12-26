@@ -1,12 +1,32 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-function Comments({ item, comments, setComments }) {
+function Comments({ comments, setComments }) {
+  const [editContents, setEditContents] = useState({ contents: "" });
   // 수정버튼 기능구현
   // const updateComments = (event) => {
   //   this.setComments({ [event.target.Comments]: event.target.value });
   //   console.log(event);
   // };
+  const fetchComments = async () => {
+    const { data } = await axios.get("http://localhost:3001/comments");
+    setComments(data);
+  };
+
+  const onClickEditButtonHandler = (contentsId, edit) => {
+    axios.patch(`http://localhost:3001/comments/${contentsId}`, edit);
+  };
+
+  useEffect(() => {
+    fetchComments();
+  }, []);
+  // console.log(comments);
+
+  const onClickDeleteButtonHandler = (contentsId) => {
+    axios.delete(`http://localhost:3001/comments/${contentsId}`);
+    setComments(comments.filter((comment) => comment.id !== contentsId));
+  };
 
   return (
     <CommentsBox>
@@ -33,14 +53,27 @@ function Comments({ item, comments, setComments }) {
             >
               {item.contents}
             </div>
-            <button>수정</button>
-            <button
-              onClick={() => {
-                setComments((prev) => prev.filter((tt) => tt.id !== item.id));
+            <input
+              type="text"
+              onChange={(ev) => {
+                setEditContents({
+                  ...editContents,
+                  contents: ev.target.value,
+                });
               }}
+            />
+            <EditBox
+              type="button"
+              onClick={() => onClickEditButtonHandler(comments, editContents)}
+            >
+              수정
+            </EditBox>
+            <EditBox
+              type="button"
+              onClick={() => onClickDeleteButtonHandler(item.id)}
             >
               삭제
-            </button>
+            </EditBox>
           </CommentBox>
         );
       })}
@@ -66,4 +99,23 @@ const CommentsBox = styled.section`
   color: white;
   fontsize: 30px;
   display: inline-block;
+`;
+
+const EditBox = styled.button`
+  margin-left: 5px;
+  width: 10%;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  align-self: center;
+  cursor: pointer;
+`;
+
+const Input = styled.input`
+  background-color: #5a7f6d;
+  color: white;
+  box-shadow: none;
+  border: 0.5px solid white;
+  width: 98%;
 `;
