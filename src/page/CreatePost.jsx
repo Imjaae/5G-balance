@@ -16,9 +16,7 @@ const CreatePost = () => {
   // 밸런스 게임 만드는 박스 유효성 검증
   const handleSubmit = () => {
     if (balance.titleA.length < 1) {
-      window.alert(
-        한 글자 이상 적어주세요.
-      )
+      window.alert("한 글자 이상 적어주세요.");
     }
   };
 
