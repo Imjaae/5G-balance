@@ -10,6 +10,7 @@ import { StatusBar } from "./statusbar/StatusBar";
 import { Bar } from "./statusbar/Bar";
 import { useQuery } from "react-query";
 import { Header } from "../components/Header";
+import { ComfirmModal } from "./ConfirmModal";
 
 const ContentHeader = styled.header`
   display: flex;
@@ -29,6 +30,19 @@ const Desc = styled.div`
     margin-top: 20px;
     width: 60vw;
     height: 5vh;
+    padding: 5px;
+    font-size: 0.9rem;
+  }
+  & label {
+    font-size: 1rem;
+    margin-right: 10px;
+  }
+  & div {
+    input {
+      margin-top: 20px;
+      width: 30vw;
+      height: 5vh;
+    }
   }
 `;
 
@@ -54,6 +68,7 @@ export const Content = () => {
   const [isVote, setIsVote] = useState(false);
   const [onEdit, setOnEdit] = useState(false);
   const [voteData, setVoteData] = useState();
+  const [confirm, setConfirm] = useState(false);
   const { isLoading, data } = useQuery(
     ["balance", id],
     async () => {
@@ -95,9 +110,8 @@ export const Content = () => {
     setIsVote(!isVote);
   };
 
-  const onDeleteHandler = (event) => {
-    navigate("/");
-    axios.delete(`http://localhost:3001/balance/${event.target.id}`);
+  const onDeleteHandler = () => {
+    setConfirm(!confirm);
   };
 
   const onToggleEditHandler = () => {
@@ -111,6 +125,15 @@ export const Content = () => {
       ) : (
         <>
           <Header />
+
+          {confirm ? (
+            <ComfirmModal
+              password={data.password}
+              confirm={confirm}
+              setConfirm={setConfirm}
+              id={id}
+            />
+          ) : null}
           <ContentHeader>
             <div>
               <span>{data.nickname}</span>님의 게임입니다.
