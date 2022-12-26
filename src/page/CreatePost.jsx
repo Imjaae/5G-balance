@@ -1,6 +1,15 @@
+import { useState } from "react";
 import styled from "styled-components";
+import Input from "../components/Input";
 
 export const CreatePost = () => {
+  const initialState = {
+    titleA: "왼쪽게임",
+    titleB: "오른쪽게임",
+    contents: "게임 설명",
+  };
+  const [balance, setBlance] = useState(initialState);
+  console.log(balance);
   return (
     <WWrap>
       <Header>5G = Blance</Header>
@@ -11,14 +20,8 @@ export const CreatePost = () => {
         }}
       >
         {/* 밸런스 게임 만드는 박스 */}
-        <h3>밸런스를 작성해주세요.</h3>
-        <p>(밸런스 문제 수정은 불가합니다.)</p>
-        <div>
-          <input />
-          VS
-          <input />
-        </div>
-        {/* 밸런스 게임 설명 박스 */}
+        <Input balance={balance} setBlance={setBlance} />
+        {/* 만든 게임을 설명하는 박스 */}
         <DetailDiv>
           <h3>밸런스 게임의 간단한 설명을 작성해주세요.</h3>
           <input />
