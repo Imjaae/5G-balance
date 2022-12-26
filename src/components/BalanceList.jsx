@@ -13,16 +13,36 @@ const BalanceListBox = styled.div`
   align-items: flex-start;
   flex-wrap: wrap;
 `;
+const BestBalanceTitle = styled.h2`
+  display: block;
+  text-align: center;
+  margin: 50px auto 0;
+  font-size: 2rem;
+`;
+const BestBalanceTitleSpan = styled.span`
+  color: #ffd601;
+  border-bottom: 5px solid #${(props) => props.Color};
+  margin-right: 5px;
+`;
 
 const BalanceList = () => {
-  const { balances } = useSelector((state) => state.balances);
+  const { balances, bestBalances } = useSelector((state) => state.balances);
 
   return (
     <>
-      {/* {bestBalances &&
-        bestBalances.map((balance) => {
-          return <div> {balance.votes}</div>;
-        })} */}
+      <BestBalanceTitle>
+        <BestBalanceTitleSpan Color="F47070">BEST</BestBalanceTitleSpan>
+        <BestBalanceTitleSpan Color="7095F4">BALANCE</BestBalanceTitleSpan>
+      </BestBalanceTitle>
+      <BalanceListBox>
+        {bestBalances.map((balance) => {
+          return (
+            <div key={balance.id}>
+              <Balance balance={balance} />
+            </div>
+          );
+        })}
+      </BalanceListBox>
       <hr />
       <BalanceListBox>
         {balances.map((balance) => {

@@ -8,7 +8,7 @@ export const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // dispatch(__getBestBalance());
+    dispatch(__getBestBalance());
     dispatch(__getBalances());
   }, [dispatch]);
 
