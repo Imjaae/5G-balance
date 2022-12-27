@@ -5,7 +5,6 @@ import { NotFound } from "./page/NotFound";
 import { Home } from "./page/Home";
 import { Signin } from "./page/Signin";
 import { Signup } from "./page/Signup";
-import { Header } from "./components/Header";
 
 function App() {
   return (
