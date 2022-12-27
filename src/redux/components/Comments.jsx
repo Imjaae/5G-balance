@@ -2,15 +2,19 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import CommentBox from "./CommentBox";
-
+import { useParams } from "react-router-dom";
 function Comments({ comments, setComments }) {
   // 수정버튼 기능구현
   // const updateComments = (event) => {
   //   this.setComments({ [event.target.Comments]: event.target.value });
   //   console.log(event);
   // };
+  const { id } = useParams();
+
   const fetchComments = async () => {
-    const { data } = await axios.get("http://localhost:3001/comments");
+    const { data } = await axios.get(
+      `http://localhost:3001/comments/?postId=${id}`
+    );
     setComments(data);
   };
 
@@ -23,7 +27,7 @@ function Comments({ comments, setComments }) {
 
   return (
     <CommentsBox>
-      {comments.map((item) => {
+      {comments?.map((item) => {
         return (
           <CommentBox
             item={item}

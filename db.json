@@ -10,32 +10,40 @@
       "choice2Rate": 74,
       "choiceDesc": "밸런스의 왕",
       "votes": 11
+    },
+    {
+      "id": 190,
+      "nickname": "이기영",
+      "password": "password11",
+      "choice1": "뭐시기",
+      "choice2": "저시기",
+      "choice1Rate": 32,
+      "choice2Rate": 74,
+      "choiceDesc": "밸런스의 왕",
+      "votes": 11
     }
   ],
   "comments": [
     {
-      "nickName": "sasdwd",
+      "nickName": "12",
       "contents": "asdasd",
-      "password": "12312",
-      "id": 166
+      "id": "65398cd1-9828-41cb-8f8d-c0b6d28c6b3d",
+      "postId": "1",
+      "password": "12"
     },
     {
-      "nickName": "dasd",
-      "contents": "qweq",
-      "password": "123123",
-      "id": 2
+      "nickName": "33",
+      "contents": "33",
+      "id": "0c9bbd64-aa82-408d-9f48-43e0a4a1574a",
+      "postId": "1",
+      "password": "33"
     },
     {
-      "nickName": "dasd",
-      "contents": "asdasd",
-      "password": "1111",
-      "id": 4
-    },
-    {
-      "nickName": "asdasd",
-      "contents": "asdasdasd",
-      "password": "1111",
-      "id": 5
+      "nickName": "임재영",
+      "contents": "댓글입니다",
+      "id": "aae7d4f7-0c73-44f8-b8f6-c6379db65f82",
+      "postId": "1",
+      "password": "1234"
     }
   ]
 }

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 function Comment() {
-  const [comments, setComments] = useState(initialState);
+  const [comments, setComments] = useState();
 
   return (
     <div>
@@ -16,27 +16,27 @@ function Comment() {
 
 export default Comment;
 
-const initialState = [
-  {
-    nickName: "닉네임1",
-    contents: "댓글내용입니다1",
-    id: uuidv4(),
-    userId: "userId",
-    password: 0,
-    // isDone: false(),
-  },
-  {
-    nickName: "닉네임2",
-    contents: "댓글내용입니다2",
-    id: uuidv4(),
-    password: 0,
-    // isDone: false(),
-  },
-  {
-    nickName: "닉네임3",
-    contents: "댓글내용입니다3",
-    id: uuidv4(),
-    password: 0,
-    // isDone: false(),
-  },
-];
+// const initialState = [
+//   {
+//     nickName: "닉네임1",
+//     contents: "댓글내용입니다1",
+//     id: uuidv4(),
+//     userId: "userId",
+//     password: 0,
+//     // isDone: false(),
+//   },
+//   {
+//     nickName: "닉네임2",
+//     contents: "댓글내용입니다2",
+//     id: uuidv4(),
+//     password: 0,
+//     // isDone: false(),
+//   },
+//   {
+//     nickName: "닉네임3",
+//     contents: "댓글내용입니다3",
+//     id: uuidv4(),
+//     password: 0,
+//     // isDone: false(),
+//   },
+// ];
