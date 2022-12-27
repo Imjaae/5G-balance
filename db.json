@@ -1,0 +1,101 @@
+{
+  "balances": [
+    {
+      "id": 1,
+      "password": "비밀번호",
+      "nickname": "이기영",
+      "choice1": "단팥호빵",
+      "choice1Rate": 50,
+      "choice2": "야채호빵",
+      "choice2Rate": 50,
+      "choiceDesce": "설명",
+      "votes": 90,
+      "date": "2022 12 27"
+    },
+    {
+      "id": 2,
+      "userid": "userid2",
+      "nickname": "이기철",
+      "choice1": "고기만두",
+      "choice1Rate": 50,
+      "choice2": "김치만두",
+      "choice2Rate": 50,
+      "choiceDesce": "설명",
+      "votes": 76
+    },
+    {
+      "id": 3,
+      "userid": "userid3",
+      "nickname": "만득이",
+      "choice1": "아카시아",
+      "choice1Rate": 40,
+      "choice2": "밀껌",
+      "choice2Rate": 60,
+      "choiceDesce": "설명",
+      "votes": 5
+    },
+    {
+      "id": 4,
+      "userid": "userid3",
+      "nickname": "만득이",
+      "choice1": "아카시아",
+      "choice1Rate": 40,
+      "choice2": "밀껌",
+      "choice2Rate": 60,
+      "choiceDesce": "설명",
+      "votes": 5
+    },
+    {
+      "id": 5,
+      "userid": "userid3",
+      "nickname": "만득이",
+      "choice1": "아카시아",
+      "choice1Rate": 40,
+      "choice2": "밀껌",
+      "choice2Rate": 60,
+      "choiceDesce": "설명",
+      "votes": 5
+    },
+    {
+      "id": 6,
+      "userid": "userid3",
+      "nickname": "만득이",
+      "choice1": "아카시아",
+      "choice1Rate": 40,
+      "choice2": "밀껌",
+      "choice2Rate": 60,
+      "choiceDesce": "설명",
+      "votes": 15
+    },
+    {
+      "id": 7,
+      "userid": "userid3",
+      "nickname": "만득이",
+      "choice1": "아카시아",
+      "choice1Rate": 40,
+      "choice2": "밀껌",
+      "choice2Rate": 60,
+      "choiceDesce": "설명",
+      "votes": 25
+    },
+    {
+      "id": 8,
+      "userid": "userid3",
+      "nickname": "만득이",
+      "choice1": "아카시아",
+      "choice1Rate": 40,
+      "choice2": "밀껌",
+      "choice2Rate": 60,
+      "choiceDesce": "설명",
+      "votes": 0
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "userid": "userid",
+      "nickname": "nickname",
+      "content": "댓글 내용"
+    }
+  ]
+}
