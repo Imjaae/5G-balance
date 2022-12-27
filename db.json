@@ -6,10 +6,10 @@
       "password": "password11",
       "choice1": "똥맛카레",
       "choice2": "카레맛똥",
-      "choice1Rate": 33,
+      "choice1Rate": 34,
       "choice2Rate": 74,
       "choiceDesc": "밸런스의 왕",
-      "votes": 12
+      "votes": 13
     },
     {
       "id": 190,
@@ -46,11 +46,11 @@
       "password": "1234"
     },
     {
-      "nickName": "임재영",
-      "contents": "임재영입니다",
-      "id": "206c4d69-f76e-40ec-bc71-eb3d3a2fd445",
+      "nickName": "ㅇㅇㅇ",
+      "contents": "ㅇㅇㅇ",
+      "id": "fe327877-20d5-48d4-9654-871a42041aeb",
       "postId": "166",
-      "password": "123"
+      "password": "11"
     }
   ]
 }

@@ -1,8 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import InputStyle from "../../UI/InputStyle";
 import { useState } from "react";
 import axios from "axios";
-// import { each } from "immer/dist/internal";
+import { Button } from "../../UI/Button";
+import AXIOS_ADDRESS from "../../modules/AxiosAddress";
+import Swal from "sweetalert2";
 
 function CommentBox({ item, setComments, comments }) {
   const [editContents, setEditContents] = useState("");
@@ -13,32 +16,7 @@ function CommentBox({ item, setComments, comments }) {
     setCheckPw(event.target.value);
   };
 
-  // const onClickEditButtonHandler = (contentsId) => {
-  //   setIsedit(!isEdit);
-  //   if (!editContents) {
-  //     return alert("입력");
-  //   }
-
-  // axios.patch(`http://localhost:3001/comments/${contentsId}`, {
-  //   contents: editContents,
-  // });
-  //   // setComments()
-
-  //   const indexValue = comments.findIndex((comment) => {
-  //     return comment.id === contentsId;
-  //   });
-  //   const updatedComment = [...comments];
-  //   updatedComment[indexValue].contents = editContents;
-  //   setComments(updatedComment);
-  //   setEditContents("");
-  // };
-
   const onClickEditButtonHandler = (event) => {
-    // event.preventDefault();
-
-    // if (!editContents) {
-    //   return;
-    // }
     if (checkPw !== item.password) {
       alert("잘못된 비밀번호를 입력했거나 비밀번호를 입력하지 않았습니다!");
       setCheckPw("");
@@ -53,7 +31,7 @@ function CommentBox({ item, setComments, comments }) {
       const indexValue = comments.findIndex((comment) => {
         return comment.id === item.id;
       });
-      axios.patch(`http://localhost:3001/comments/${item.id}`, edit);
+      axios.patch(`${AXIOS_ADDRESS}/comments/${item.id}`, edit);
       const updatedComment = [...comments];
       updatedComment[indexValue].contents = editContents;
       setComments(updatedComment);
@@ -62,27 +40,44 @@ function CommentBox({ item, setComments, comments }) {
     }
   };
 
-  // const onClickDeleteButtonHandler = (contentsId) => {
-  //   axios.delete(`http://localhost:3001/comments/${contentsId}`);
-  //   setComments(comments.filter((comment) => comment.id !== contentsId));
+  // const onClickDeleteButtonHandler = (event) => {
+  //   event.preventDefault();
+  //   if (checkPw !== item.password) {
+  //     alert("비밀번호를 입력하지 않았거나 비밀번호가 다릅니다!");
+  //     setCheckPw("");
+  //     return;
+  //   } else {
+  //     axios.delete(`${AXIOS_ADDRESS}/comments/${item.id}`);
+  //     setComments(comments.filter((comment) => comment.id !== item.id));
+  //     setCheckPw("");
+  //   }
   // };
 
-  const onClickDeleteButtonHandler = (event) => {
-    event.preventDefault();
-    if (checkPw !== item.password) {
-      console.log(item.postId);
-      alert("비밀번호를 입력하지 않았거나 비밀번호가 다릅니다!");
-      setCheckPw("");
-      // document.querySelector(".confirmPw").focus();
-      return;
-    } else {
-      axios.delete(`http://localhost:3001/comments/${item.id}`);
-      setComments(comments.filter((comment) => comment.id !== item.id));
-      setCheckPw("");
-    }
-  };
-
   const onClickFakeButton = () => [setIsedit(true)];
+  const onClickDeleteButton = () => {
+    (async () => {
+      const { value: getName } = await Swal.fire({
+        title: "댓글 삭제",
+        text: "비밀번호를 입력하여 삭제 할 수 있습니다.",
+        input: "text",
+        inputPlaceholder: "비밀번호 입력(숫자)",
+      });
+
+      // 이후 처리되는 내용.
+      if (getName === item.password) {
+        await axios.delete(`${AXIOS_ADDRESS}/comments/${item.id}`);
+        window.location.reload();
+      } else {
+        Swal.fire({
+          title: "Error",
+          text: "비밀번호가 틀렸습니다.",
+          icon: "error",
+        });
+      }
+    })();
+  };
+  const onClickCancleButton = () => [setIsedit(false)];
+
   return (
     <CommentedBox>
       <ItemNickname>{item.nickName}</ItemNickname>
@@ -90,46 +85,42 @@ function CommentBox({ item, setComments, comments }) {
         <ItemContents>{item.contents}</ItemContents>
       ) : (
         <>
-          <EditInput
+          <InputStyle
             value={editContents}
-            placeholder="수정값을 입력하세요"
+            placeholder={editContents}
             type="text"
             onChange={(ev) => {
-              // console.log(ev.target.value);
               setEditContents(ev.target.value);
             }}
           />
-          <InputPw
+          <InputStyle
             value={checkPw}
             type="text"
-            placeholder="비밀번호"
+            placeholder="비밀번호 "
             onChange={onChangePw}
             style={{}}
           />
         </>
       )}
-
-      {/* <InputPw
-        value={checkPw}
-        type="text"
-        placeholder="비밀번호"
-        onChange={onChangePw}
-        style={{}}
-      /> */}
-
       {isEdit ? (
         <EditBox
           type="button"
           onClick={() => onClickEditButtonHandler(item.id)}
         >
-          완료
+          확인
         </EditBox>
       ) : (
-        <button onClick={onClickFakeButton}>수정</button>
+        <Button onClick={onClickFakeButton}>수정</Button>
       )}
-      <EditBox type="button" onClick={onClickDeleteButtonHandler}>
-        삭제
-      </EditBox>
+      {isEdit ? (
+        <EditBox type="button" onClick={onClickCancleButton}>
+          취소
+        </EditBox>
+      ) : (
+        <EditBox type="button" onClick={onClickDeleteButton}>
+          삭제
+        </EditBox>
+      )}
     </CommentedBox>
   );
 }
@@ -140,6 +131,8 @@ const CommentedBox = styled.h3`
   flex-direction: inherit;
   text-align: center;
   width: 100%;
+  border-bottom: solid 0.5px #878787;
+  font-size: 20px;
 `;
 
 const EditBox = styled.button`
@@ -153,14 +146,6 @@ const EditBox = styled.button`
   cursor: pointer;
 `;
 
-// const Input = styled.input`
-//   background-color: #5a7f6d;
-//   color: white;
-//   box-shadow: none;
-//   border: 0.5px solid white;
-//   width: 98%;
-// `;
-
 const ItemNickname = styled.div`
   margin-right: 20px;
   border: solid 1px white;
@@ -170,31 +155,31 @@ const ItemNickname = styled.div`
 
 const ItemContents = styled.div`
   padding: 10px;
-  border: solid 1px white;
+  border: solid 1px #878787;
   width: 600px;
   text-align: left;
+  color: #000;
 `;
 
-const EditInput = styled.input`
-  background-color: #5a7f6d;
-  border: 0.5px solid white;
-  color: white;
-  margin-left: 10px;
-  padding-left: 20px;
-  ::placeholder {
-    color: white;
-  }
-`;
+// const EditInput = styled.input`
+//   border: 0.5px solid white;
+//   color: white;
+//   margin-left: 10px;
+//   padding-left: 20px;
+//   ::placeholder {
+//     color: white;
+//   }
+// `;
 
-const InputPw = styled.input`
-  width: 10%;
-  display: flex;
-  flex-direction: inherit;
-  height: 100%;
-  align-items: center;
-  text-align: center;
-  margin: 0px 10px;
-  place-self: center;
-`;
+// const InputPw = styled.input`
+//   width: 10%;
+//   display: flex;
+//   flex-direction: inherit;
+//   height: 100%;
+//   align-items: center;
+//   text-align: center;
+//   margin: 0px 10px;
+//   place-self: center;
+// `;
 
 export default CommentBox;
