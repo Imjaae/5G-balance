@@ -40,7 +40,11 @@ export const EditBalance = (props) => {
       <div>
         <label htmlFor="confirmPw">비밀번호</label>
         <input
+<<<<<<< Updated upstream
           type="text"
+=======
+          type="password"
+>>>>>>> Stashed changes
           id="confirmPw"
           placeholder="비밀번호를 입력해주세요"
           onChange={onEnterPw}

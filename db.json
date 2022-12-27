@@ -1,4 +1,5 @@
 {
+<<<<<<< Updated upstream
   "posts": [
     {
       "id": 1,
@@ -42,3 +43,32 @@
     "name": "typicode"
   }
 }
+=======
+  "balance": [
+    {
+      "id": "rdO5boD",
+      "userid": "firebase-UID3",
+      "nickname": "닉네임3",
+      "choice1": "화난 상사 상대하기",
+      "choice1Rate": 95,
+      "choice2": "화난 고객 상대하기",
+      "choice2Rate": 88,
+      "choiceDesc": "수정",
+      "votes": 9,
+      "password": "password"
+    },
+    {
+      "id": "rDk83oD",
+      "userid": "firebase-UID1",
+      "nickname": "닉네임",
+      "choice1": "야채호빵",
+      "choice1Rate": 64,
+      "choice2": "단팥호빵",
+      "choice2Rate": 49,
+      "choiceDesc": "호빵",
+      "votes": 2,
+      "password": "password"
+    }
+  ]
+}
+>>>>>>> Stashed changes

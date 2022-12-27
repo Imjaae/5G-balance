@@ -9,7 +9,11 @@ export const Home = () => {
   return (
     <>
       <h1>메인페이지</h1>
+<<<<<<< Updated upstream
       <button id="tZmyKkm" onClick={goToDetailPage}>
+=======
+      <button id="rDk83oD" onClick={goToDetailPage}>
+>>>>>>> Stashed changes
         테스트 상세페이지1
       </button>
       <button id="rdO5boD" onClick={goToDetailPage}>
