@@ -78,7 +78,7 @@ export const ComfirmModal = ({ confirm, setConfirm, password, id }) => {
       return;
     } else {
       navigate("/");
-      axios.delete(`http://localhost:3001/balance/${id}`);
+      axios.delete(`http://localhost:3001/balances/${id}`);
       localStorage.removeItem(id);
     }
   };

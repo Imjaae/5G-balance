@@ -30,7 +30,7 @@ export const EditBalance = (props) => {
           choiceDesc: newDesc,
         };
         props.setOnEdit(false);
-        return axios.patch("http://localhost:3001/balance/" + props.id, edit);
+        return axios.patch("http://localhost:3001/balances/" + props.id, edit);
       }
     }
   };
@@ -40,11 +40,7 @@ export const EditBalance = (props) => {
       <div>
         <label htmlFor="confirmPw">비밀번호</label>
         <input
-<<<<<<< Updated upstream
-          type="text"
-=======
           type="password"
->>>>>>> Stashed changes
           id="confirmPw"
           placeholder="비밀번호를 입력해주세요"
           onChange={onEnterPw}

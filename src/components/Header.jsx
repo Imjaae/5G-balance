@@ -1,59 +1,17 @@
-<<<<<<< HEAD
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import styled from "styled-components";
-
-const HeaderContainer = styled.div`
-  background-color: #d9d9d9;
-  padding: 20px 0;
-  font-weight: 800;
-  font-size: 28px;
-  text-align: center;
-
-  & span {
-    cursor: pointer;
-  }
-  & span span:nth-child(1) {
-    color: #7095f5;
-  }
-  & span span:nth-child(2) {
-    padding: 0 10px;
-  }
-  & span span:nth-child(3) {
-    color: #f47070;
-  }
-`;
-
-export const Header = () => {
-  const navigate = useNavigate();
-  const backToMainPage = () => {
-    navigate("/");
-  };
-
-  return (
-    <HeaderContainer>
-      <span onClick={backToMainPage}>
-        <span>5G</span>
-        <span>=</span>
-        <span>Balance</span>
-      </span>
-    </HeaderContainer>
-  );
-};
-=======
-import React from 'react';
-import styled from 'styled-components';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const navigate = useNavigate();
 
   // 로그인, 회원가입 선택 페이지로 이동하는 함수
   const goAuth = () => {
-    navigate('/auth');
+    navigate("/auth");
   };
 
   const goCreatePost = () => {
-    navigate('/post');
+    navigate("/post");
   };
 
   return (
@@ -125,4 +83,3 @@ const ButtonStyles = styled.button`
 `;
 
 export default Header;
->>>>>>> main

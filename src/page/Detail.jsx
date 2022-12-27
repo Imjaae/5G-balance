@@ -1,11 +1,11 @@
-import { Content } from "../components/Content";
+import { BalanceContent } from "../components/BalanceContent";
 import Comment from "../redux/components/Comment";
 
 export const Detail = () => {
   return (
     <>
-      <Content />
+      <BalanceContent />
       <Comment />
     </>
-    )
-}
+  );
+};
