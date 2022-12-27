@@ -5,6 +5,7 @@ import Content from "../components/Content";
 import Nickname from "../components/Nickname";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 //닉네임 input box 유효성 검증
 export const nicknameCheck = (id) => {
@@ -24,7 +25,12 @@ export const passwordCheck = (id) => {
 const date = new Date();
 console.log(date);
 
+// 게임 만들기 버튼 클릭 시 메인 페이지로 이동
+// useNavigate를 사용하기위한 변수선언
+
 const CreatePost = () => {
+  const navigate = useNavigate();
+
   const initialState = {
     choice1: "왼쪽게임",
     choice2: "오른쪽게임",
@@ -42,7 +48,6 @@ const CreatePost = () => {
     const B = balance.choice2.length;
     const C = balance.contents.length;
 
-    console.log(nicknameCheck(balance.nickname));
     if (!nicknameCheck(balance.nickname)) {
       window.alert("Nickname error");
       return;
@@ -73,10 +78,11 @@ const CreatePost = () => {
 
     // json-server
     await axios.post(
-      `https://json-server-vercel-mauve-nu.vercel.app/balances`,
+      "https://json-server-vercel-mauve-nu.vercel.app/balances",
       CreatePostData
     );
     console.log(balance);
+    navigate("/");
   };
 
   const getBalances = async () => {
@@ -126,14 +132,3 @@ const Wrap = styled.main`
   flex-direction: column;
   padding: "20px";
 `;
-
-// const balanceBasic = [
-//   {
-//     id: "id",
-//     password: "비밀번호",
-//     nickname,
-//     choice1,
-//     choice2,
-//     date,
-//   },
-// ];
