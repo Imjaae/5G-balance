@@ -174,10 +174,13 @@ export const BalanceContent = () => {
           </Desc>
           {isVote ? (
             <StatusBar>
-              <Bar choice1={data.choice1Rate} choice2={data.choice2Rate}>
-                <span>{data.choice1Rate}</span>
-              </Bar>
-              <span>{data.choice2Rate}</span>
+              {data.choice1Rate > 0 ? (
+                <Bar choice1={data.choice1Rate} choice2={data.choice2Rate}>
+                  <span>{data.choice1Rate}</span>
+                </Bar>
+              ) : null}
+
+              {data.choice2Rate > 0 ? <span>{data.choice2Rate}</span> : null}
             </StatusBar>
           ) : null}
         </>

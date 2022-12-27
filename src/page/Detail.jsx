@@ -4,7 +4,7 @@ import Comment from "../redux/components/Comment";
 export const Detail = () => {
   return (
     <>
-      <BalanceContent />
+      {/* <BalanceContent /> */}
       <Comment />
     </>
   );

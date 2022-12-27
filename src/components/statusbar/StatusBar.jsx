@@ -11,8 +11,10 @@ export const StatusBar = styled.div`
   font-weight: 600;
   font-size: 0.8rem;
   color: white;
-  & > span::after {
+  & span {
+    padding-left: 10px;
+  }
+  & span::after {
     content: "표";
-    padding-right: 10px;
   }
 `;

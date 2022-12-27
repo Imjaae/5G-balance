@@ -1,4 +1,41 @@
 {
-  "balances": [],
-  "comments": []
+  "balances": [
+    {
+      "id": 166,
+      "nickname": "이기영",
+      "password": "password11",
+      "choice1": "똥맛카레",
+      "choice2": "카레맛똥",
+      "choice1Rate": 32,
+      "choice2Rate": 74,
+      "choiceDesc": "밸런스의 왕",
+      "votes": 11
+    }
+  ],
+  "comments": [
+    {
+      "nickName": "sasdwd",
+      "contents": "asdasd",
+      "password": "12312",
+      "id": 166
+    },
+    {
+      "nickName": "dasd",
+      "contents": "qweq",
+      "password": "123123",
+      "id": 2
+    },
+    {
+      "nickName": "dasd",
+      "contents": "asdasd",
+      "password": "1111",
+      "id": 4
+    },
+    {
+      "nickName": "asdasd",
+      "contents": "asdasdasd",
+      "password": "1111",
+      "id": 5
+    }
+  ]
 }

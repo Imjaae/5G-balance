@@ -7,9 +7,5 @@ export const Bar = styled.div`
   transition: background-color 1s ease-in;
   display: flex;
   align-items: center;
-  padding: 0 10px;
   box-sizing: border-box;
-  & span::after {
-    content: "표";
-  }
 `;
