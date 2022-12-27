@@ -9,7 +9,7 @@
   "comments": [
     {
       "nickName": "sad",
-      "contents": "수정해",
+      "contents": "",
       "password": "dasd",
       "id": 162
     },
@@ -36,6 +36,12 @@
       "contents": "자게해주세요",
       "password": "ㅁ ㅇㅁㅇㅈ",
       "id": 168
+    },
+    {
+      "nickName": "임재영",
+      "contents": "임재영입니다",
+      "password": "12314",
+      "id": 169
     }
   ],
   "profile": {

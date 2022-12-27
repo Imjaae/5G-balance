@@ -15,12 +15,12 @@ function Comments({ comments, setComments }) {
   };
 
   const onClickEditButtonHandler = (contentsId, edit) => {
-    // console.log(contentsId, edit);
+    console.log(editContents);
     // console.log(contents.target.value);
-    // if (contents === "") {
-    //   alert("입력");
-    //   return contents.preventDefault();
-    // }\
+    if (editContents === "") {
+      // console.log(editContents);
+      return editContents.preventDefault();
+    }
     axios.patch(`http://localhost:3001/comments/${contentsId}`, edit);
     window.location.reload();
   };
@@ -69,6 +69,11 @@ function Comments({ comments, setComments }) {
                   ...editContents,
                   contents: ev.target.value,
                 });
+                console.log(ev.target.value);
+                // if (ev.target.value === "") {
+                //   alert("입력");
+                //   return ev.preventDefault();
+                // }
               }}
             />
             <input
@@ -86,16 +91,19 @@ function Comments({ comments, setComments }) {
               }}
             />
             <EditBox
+              value={editContents}
               type="button"
               onClick={() =>
                 onClickEditButtonHandler(item.id, editContents, item.contents)
               }
+              isEdit={true}
             >
               수정
             </EditBox>
             <EditBox
               type="button"
               onClick={() => onClickDeleteButtonHandler(item.id)}
+              isEdit={true}
             >
               삭제
             </EditBox>
