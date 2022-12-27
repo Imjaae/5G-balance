@@ -65,6 +65,8 @@ const CreatePost = () => {
       nickname: balance.nickname,
       password: balance.password,
     };
+
+    // json-server
     await axios.post(
       `https://json-server-vercel-mauve-nu.vercel.app/balances`,
       CreatePostData
@@ -126,10 +128,7 @@ const Wrap = styled.main`
 //     password: "비밀번호",
 //     nickname,
 //     choice1,
-//     choice1Rate,
 //     choice2,
-//     choice2Rate,
-//     choiceDesc,
 //     date,
 //   },
 // ];
