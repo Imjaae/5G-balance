@@ -70,7 +70,7 @@ const NicknameStyleObj = styled.div`
     border: 0 solid black;
     background-color: #d6d4ce;
     height: 3vh;
-    width: 25vw;
+    width: 23vw;
     margin-left: 20px;
     margin-right: 20px;
   }

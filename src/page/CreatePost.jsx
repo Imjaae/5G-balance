@@ -20,6 +20,10 @@ export const passwordCheck = (id) => {
   return regExp.test(id);
 };
 
+// 최신순을 알기 위한 날짜
+const date = new Date();
+console.log(date);
+
 const CreatePost = () => {
   const initialState = {
     choice1: "왼쪽게임",
@@ -64,6 +68,7 @@ const CreatePost = () => {
       contents: balance.contents,
       nickname: balance.nickname,
       password: balance.password,
+      date: date,
     };
 
     // json-server
