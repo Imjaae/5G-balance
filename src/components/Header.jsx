@@ -1,17 +1,17 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Link, useNavigate } from 'react-router-dom';
+import React from "react";
+import styled from "styled-components";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const navigate = useNavigate();
 
   // 로그인, 회원가입 선택 페이지로 이동하는 함수
   const goAuth = () => {
-    navigate('/auth');
+    navigate("/auth");
   };
 
   const goCreatePost = () => {
-    navigate('/post');
+    navigate("/post");
   };
 
   return (

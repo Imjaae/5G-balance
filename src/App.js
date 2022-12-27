@@ -7,7 +7,7 @@ import CreatePost from "./page/CreatePost";
 
 function App() {
   return (
-    <div>
+    <>
       <BrowserRouter>
         <Header />
         <Routes>
@@ -17,7 +17,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </>
   );
 }
 

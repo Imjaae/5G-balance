@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import BalanceList from '../components/BalanceList';
-import { useDispatch, useSelector } from 'react-redux';
-import { __getBalances, __getBestBalance } from '../redux/modules/balanceSlice';
+import React, { useEffect } from "react";
+import BalanceList from "../components/BalanceList";
+import { useDispatch, useSelector } from "react-redux";
+import { __getBalances, __getBestBalance } from "../redux/modules/balanceSlice";
 
 export const Home = () => {
   const { isLoding, error } = useSelector((state) => state.balances);
