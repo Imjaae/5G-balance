@@ -2,25 +2,31 @@ import axios from "axios";
 import React, { useState } from "react";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
+import { useParams } from "react-router-dom";
 
-function Input({ setComments }) {
+function Input({ setComments, comments }) {
   const [contents, setContents] = useState("");
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
 
-  const onSubmitHandler = (nickName, contents, password) => {
-    axios.post("http://localhost:3001/comments", {
-      nickName,
-      contents,
-      password,
-    });
+  const { id } = useParams();
 
+  const onSubmitHandler = (nickName, contents, password, postId) => {
+    axios.post(`http://localhost:3001/comments`, {
+      nickName: nickName,
+      contents: contents,
+      id: uuidv4(),
+      postId: id,
+      password: password,
+    });
+    console.log(id);
     // console.log("event :", event.target[0].value);
 
     const newComments = {
       nickName: nickName,
       contents: contents,
       id: uuidv4(),
+      postId: id,
       password: password,
 
       // isDone: false(),

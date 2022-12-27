@@ -9,56 +9,125 @@ function CommentBox({ item, setComments, comments }) {
   const [isEdit, setIsedit] = useState(false);
   const [checkPw, setCheckPw] = useState("");
 
-  const onClickEditButtonHandler = (contentsId, con) => {
-    setIsedit(!isEdit);
-    if (!editContents) {
-      return alert("입력");
+  const onChangePw = (event) => {
+    setCheckPw(event.target.value);
+  };
+
+  // const onClickEditButtonHandler = (contentsId) => {
+  //   setIsedit(!isEdit);
+  //   if (!editContents) {
+  //     return alert("입력");
+  //   }
+
+  // axios.patch(`http://localhost:3001/comments/${contentsId}`, {
+  //   contents: editContents,
+  // });
+  //   // setComments()
+
+  //   const indexValue = comments.findIndex((comment) => {
+  //     return comment.id === contentsId;
+  //   });
+  //   const updatedComment = [...comments];
+  //   updatedComment[indexValue].contents = editContents;
+  //   setComments(updatedComment);
+  //   setEditContents("");
+  // };
+
+  const onClickEditButtonHandler = (event) => {
+    // event.preventDefault();
+
+    // if (!editContents) {
+    //   return;
+    // }
+    if (checkPw !== item.password) {
+      alert("잘못된 비밀번호를 입력했거나 비밀번호를 입력하지 않았습니다!");
+      setCheckPw("");
+
+      return;
+    } else {
+      const edit = {
+        ...item,
+        contents: editContents,
+      };
+      setIsedit(false);
+      const indexValue = comments.findIndex((comment) => {
+        return comment.id === item.id;
+      });
+      axios.patch(`http://localhost:3001/comments/${item.id}`, edit);
+      const updatedComment = [...comments];
+      updatedComment[indexValue].contents = editContents;
+      setComments(updatedComment);
+      setEditContents("");
+      setCheckPw("");
     }
-
-    axios.patch(`http://localhost:3001/comments/${contentsId}`, {
-      contents: editContents,
-    });
-    // setComments()
-
-    const indexValue = comments.findIndex((comment) => {
-      return comment.id === contentsId;
-    });
-    const updatedComment = [...comments];
-    updatedComment[indexValue].contents = editContents;
-    setComments(updatedComment);
-    setEditContents("");
   };
 
-  const onClickDeleteButtonHandler = (contentsId) => {
-    axios.delete(`http://localhost:3001/comments/${contentsId}`);
-    setComments(comments.filter((comment) => comment.id !== contentsId));
+  // const onClickDeleteButtonHandler = (contentsId) => {
+  //   axios.delete(`http://localhost:3001/comments/${contentsId}`);
+  //   setComments(comments.filter((comment) => comment.id !== contentsId));
+  // };
+
+  const onClickDeleteButtonHandler = (event) => {
+    event.preventDefault();
+    if (checkPw !== item.password) {
+      console.log(item.postId);
+      alert("비밀번호를 입력하지 않았거나 비밀번호가 다릅니다!");
+      setCheckPw("");
+      // document.querySelector(".confirmPw").focus();
+      return;
+    } else {
+      axios.delete(`http://localhost:3001/comments/${item.id}`);
+      setComments(comments.filter((comment) => comment.id !== item.id));
+      setCheckPw("");
+    }
   };
 
+  const onClickFakeButton = () => [setIsedit(true)];
   return (
     <CommentedBox>
       <ItemNickname>{item.nickName}</ItemNickname>
       {isEdit === false ? (
         <ItemContents>{item.contents}</ItemContents>
       ) : (
-        <EditInput
-          value={editContents}
-          placeholder="수정값을 입력하세요"
-          type="text"
-          onChange={(ev) => {
-            // console.log(ev.target.value);
-            setEditContents(ev.target.value);
-          }}
-        />
+        <>
+          <EditInput
+            value={editContents}
+            placeholder="수정값을 입력하세요"
+            type="text"
+            onChange={(ev) => {
+              // console.log(ev.target.value);
+              setEditContents(ev.target.value);
+            }}
+          />
+          <InputPw
+            value={checkPw}
+            type="text"
+            placeholder="비밀번호"
+            onChange={onChangePw}
+            style={{}}
+          />
+        </>
       )}
 
-      <InputPw value={checkPw} type="text" placeholder="비밀번호" style={{}} />
-      <EditBox type="button" onClick={() => onClickEditButtonHandler(item.id)}>
-        {isEdit ? "닫기" : "수정"}
-      </EditBox>
-      <EditBox
-        type="button"
-        onClick={() => onClickDeleteButtonHandler(item.id)}
-      >
+      {/* <InputPw
+        value={checkPw}
+        type="text"
+        placeholder="비밀번호"
+        onChange={onChangePw}
+        style={{}}
+      /> */}
+
+      {isEdit ? (
+        <EditBox
+          type="button"
+          onClick={() => onClickEditButtonHandler(item.id)}
+        >
+          완료
+        </EditBox>
+      ) : (
+        <button onClick={onClickFakeButton}>수정</button>
+      )}
+      <EditBox type="button" onClick={onClickDeleteButtonHandler}>
         삭제
       </EditBox>
     </CommentedBox>

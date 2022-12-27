@@ -19,11 +19,13 @@ export const EditBalance = (props) => {
       alert("잘못된 비밀번호를 입력했거나 비밀번호를 입력하지 않았습니다!");
       setCheckPw("");
       document.querySelector("#newDesc").focus();
+      return;
     } else {
       if (newDesc.trim() === "" || newDesc.length > 30) {
         alert("설명은 1자 이상, 30자 이하로 작성해 주세요.");
         document.querySelector("#confirmPw").focus();
         setNewDesc("");
+        return;
       } else {
         const edit = {
           ...props.data,
