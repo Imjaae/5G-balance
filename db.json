@@ -8,20 +8,34 @@
   ],
   "comments": [
     {
-      "contents": "테스트",
-      "id": 2
+      "nickName": "sad",
+      "contents": "수정해",
+      "password": "dasd",
+      "id": 162
     },
     {
-      "contents": "테스트2",
-      "id": 3
+      "nickName": "임재영",
+      "contents": "ㅇㅁㄴㅇㅈㅇ",
+      "password": "1234",
+      "id": 163
     },
     {
-      "contents": "dasdawdasd",
-      "id": 4
+      "nickName": "임재영",
+      "contents": "dawdasd",
+      "password": "1234",
+      "id": 164
     },
     {
-      "contents": "dsawdasd",
-      "id": 5
+      "nickName": "ㅇㅁㄴㅇㅈ",
+      "contents": "dawdasd",
+      "password": "123ㄴㅁㅇ",
+      "id": 166
+    },
+    {
+      "nickName": "ㅇㅈㅇ ㅁㄴㅇㅁㅈㅇ",
+      "contents": "자게해주세요",
+      "password": "ㅁ ㅇㅁㅇㅈ",
+      "id": 168
     }
   ],
   "profile": {

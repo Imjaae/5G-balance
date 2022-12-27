@@ -21,18 +21,22 @@ const initialState = [
     nickName: "닉네임1",
     contents: "댓글내용입니다1",
     id: uuidv4(),
+    userId: "userId",
+    password: 0,
     // isDone: false(),
   },
   {
     nickName: "닉네임2",
     contents: "댓글내용입니다2",
     id: uuidv4(),
+    password: 0,
     // isDone: false(),
   },
   {
     nickName: "닉네임3",
     contents: "댓글내용입니다3",
     id: uuidv4(),
+    password: 0,
     // isDone: false(),
   },
 ];
