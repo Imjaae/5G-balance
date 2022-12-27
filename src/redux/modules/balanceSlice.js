@@ -1,5 +1,6 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+import AXIOS_ADDRESS from "../../modules/AxiosAddress";
 
 const initialState = {
   balances: [],
@@ -9,11 +10,11 @@ const initialState = {
 };
 
 export const __getBalances = createAsyncThunk(
-  'balances/getBalances',
+  "balances/getBalances",
   async (payload, thunkAPI) => {
     try {
       const data = await axios.get(
-        'http://localhost:3001/balances/?_sort=date&_order=asc'
+        `${AXIOS_ADDRESS}/balances/?_sort=date&_order=desc`
       );
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
@@ -23,11 +24,11 @@ export const __getBalances = createAsyncThunk(
 );
 
 export const __getBestBalance = createAsyncThunk(
-  'bestBalances/getBestBalances',
+  "bestBalances/getBestBalances",
   async (payload, thunkAPI) => {
     try {
       const bestData = await axios.get(
-        'http://localhost:3001/balances?_sort=votes&_order=desc&_limit=3'
+        `${AXIOS_ADDRESS}/balances/?_sort=votes&_order=desc&_limit=3`
       );
       return thunkAPI.fulfillWithValue(bestData.data);
     } catch (error) {
@@ -37,7 +38,7 @@ export const __getBestBalance = createAsyncThunk(
 );
 
 const balanceSlice = createSlice({
-  name: 'balances',
+  name: "balances",
   initialState,
   reducers: {},
   extraReducers: {

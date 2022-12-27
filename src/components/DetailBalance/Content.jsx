@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Button } from "../../UI/Button";
 
 export default Content;
 
@@ -24,17 +25,16 @@ function Content({ balance, setBalance, handleContentsSubmit }) {
         <textarea
           onChange={handleContentChange}
           type="text"
-          placeholder="최대 30자 이하 입력 가능"
-          autofocus
+          // placeholder="최대 30자 이하 입력 가능"
         />
         <br />
-        <button
+        <Button
           onClick={() => {
             handleContentsSubmit();
           }}
         >
           게임 만들기
-        </button>
+        </Button>
       </DetailDiv>
     </>
   );
@@ -44,8 +44,7 @@ const DetailDiv = styled.div`
   padding: 20px;
   transition: 0.4s;
   textarea {
-    border: 0 solid black;
-    background-color: #d6d4ce;
+    border: 1px solid black;
     display: block;
     margin: auto;
     height: 15vh;

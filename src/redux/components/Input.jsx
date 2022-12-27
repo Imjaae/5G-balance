@@ -1,8 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react";
 import styled from "styled-components";
+import InputStyle from "../../UI/InputStyle";
 import { v4 as uuidv4 } from "uuid";
 import { useParams } from "react-router-dom";
+import { Button } from "../../UI/Button";
+import AXIOS_ADDRESS from "../../modules/AxiosAddress";
 
 function Input({ setComments, comments }) {
   const [contents, setContents] = useState("");
@@ -12,15 +15,13 @@ function Input({ setComments, comments }) {
   const { id } = useParams();
 
   const onSubmitHandler = (nickName, contents, password, postId) => {
-    axios.post(`http://localhost:3001/comments`, {
+    axios.post(`${AXIOS_ADDRESS}/comments`, {
       nickName: nickName,
       contents: contents,
       id: uuidv4(),
       postId: id,
       password: password,
     });
-    console.log(id);
-    // console.log("event :", event.target[0].value);
 
     const newComments = {
       nickName: nickName,
@@ -28,10 +29,7 @@ function Input({ setComments, comments }) {
       id: uuidv4(),
       postId: id,
       password: password,
-
-      // isDone: false(),
     };
-    // console.log(newComments);
 
     setComments((prev) => {
       return [...prev, newComments];
@@ -39,7 +37,6 @@ function Input({ setComments, comments }) {
     setNickname("");
     setContents("");
     setPassword("");
-    // console.log(event.target.value);
   };
 
   const handleNicknameButtonClick = (event) => {
@@ -51,7 +48,6 @@ function Input({ setComments, comments }) {
   };
 
   const passwordRegEx = /^[0-9]*$/;
-  // const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
   const handlePasswordButtonClick = (password) => {
     if (password.match(passwordRegEx) === null) {
       alert("숫자만 입력해 주세요 ❌");
@@ -60,10 +56,6 @@ function Input({ setComments, comments }) {
   };
 
   const addCommentButtonClick = (e) => {
-    // console.log({ contents }, { nickname }, { password });
-    // console.log(contents);
-    // console.log(password);
-    // console.log(nickname);
     if (contents === "") {
       alert("댓글을 입력하세요🔥");
       return e.preventDefault();
@@ -76,7 +68,6 @@ function Input({ setComments, comments }) {
       alert("닉네임을 입력하세요🔥");
       return e.preventDefault();
     } else {
-      alert("댓글을 등록하였습니다 🧤");
     }
   };
 
@@ -90,38 +81,37 @@ function Input({ setComments, comments }) {
         }
       }}
     >
-      <input
+      <InputStyle
         style={{
-          width: "20%",
-          marginRight: "10px",
+          width: "15%",
         }}
         onChange={handleNicknameButtonClick}
         value={nickname}
         placeholder="닉네임"
       />
-      <input
+      <InputStyle
         style={{
-          width: "30%",
-          marginRight: "10px",
+          width: "40%",
         }}
         onChange={handleTitleButtonClick}
         value={contents}
         placeholder="댓글을 작성해 주세요."
       />
-      <input
+      <InputStyle
         style={{
-          width: "10%",
-          marginRight: "10px",
+          width: "15%",
         }}
         onChange={(e) => {
           handlePasswordButtonClick(e.target.value);
           setPassword(e.target.value);
         }}
         value={password}
-        placeholder="비밀번호"
+        placeholder="비밀번호 (숫자)"
         secureTextEntry={true}
       />
-      <button onClick={addCommentButtonClick}>댓글 작성</button>
+      <Button Margin="0 15px" onClick={addCommentButtonClick}>
+        댓글 작성
+      </Button>
     </InputBox>
   );
 }
@@ -129,10 +119,11 @@ function Input({ setComments, comments }) {
 export default Input;
 
 const InputBox = styled.form`
-  border: 1px solid #5a7f6d;
   padding: 30px;
   margin: 30px;
   display: flex;
+  justify-content: space-between;
   width: 100%;
   align-items: center;
+  box-sizing: border-box;
 `;

@@ -1,4 +1,4 @@
-import { BalanceContent } from "../components/BalanceContent";
+import { BalanceContent } from "../components/DetailBalance/BalanceContent";
 import Comment from "../redux/components/Comment";
 
 export const Detail = () => {

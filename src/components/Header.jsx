@@ -6,23 +6,18 @@ const Header = () => {
   const navigate = useNavigate();
 
   // 로그인, 회원가입 선택 페이지로 이동하는 함수
-  const goAuth = () => {
-    navigate("/auth");
-  };
-
   const goCreatePost = () => {
     navigate("/post");
+  };
+  const goHome = () => {
+    navigate("/");
   };
 
   return (
     <HeaderBox>
       <HeaderInnerBox></HeaderInnerBox>
-      <HeaderLink to="/">5G = BALANCE</HeaderLink>
+      <HeaderLink onClick={goHome}>5G = BALANCE</HeaderLink>
       <HeaderInnerBox>
-        {/* currentUid?로 로그인 여부 확인해서 로그인 하면 로그아웃으로 바꾸기 */}
-        {/* <ButtonStyles onClick={goAuth} textColor="F47070">
-          로그인
-        </ButtonStyles> */}
         <ButtonStyles onClick={goCreatePost} textColor="7095F4">
           게임만들기
         </ButtonStyles>
@@ -48,7 +43,7 @@ const HeaderInnerBox = styled.div`
   text-align: right;
 `;
 
-const HeaderLink = styled(Link)`
+const HeaderLink = styled.div`
   width: 33.333%;
   text-align: center;
   text-decoration: none;

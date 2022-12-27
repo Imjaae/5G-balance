@@ -2,7 +2,9 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { Button } from "../UI/Button";
+import { Button } from "../../UI/Button";
+import InputStyle from "../../UI/InputStyle";
+import AXIOS_ADDRESS from "../../modules/AxiosAddress";
 
 const Modal = styled.div`
   background-color: #ececec;
@@ -78,7 +80,7 @@ export const ComfirmModal = ({ confirm, setConfirm, password, id }) => {
       return;
     } else {
       navigate("/");
-      axios.delete(`http://localhost:3001/balances/${id}`);
+      axios.delete(`${AXIOS_ADDRESS}/balances/${id}`);
       localStorage.removeItem(id);
     }
   };
@@ -88,7 +90,7 @@ export const ComfirmModal = ({ confirm, setConfirm, password, id }) => {
       <Modal>
         <h2>정말로 삭제하시겠습니까?</h2>
         <header>비밀번호 확인</header>
-        <input
+        <InputStyle
           type="text"
           onChange={onEnterPw}
           placeholder="비밀번호를 입력하세요."

@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
-import { Button } from "../UI/Button";
+import { Button } from "../../UI/Button";
+import InputStyle from "../../UI/InputStyle";
+import AXIOS_ADDRESS from "../../modules/AxiosAddress";
 
 export const EditBalance = (props) => {
   const [newDesc, setNewDesc] = useState("");
@@ -29,10 +31,10 @@ export const EditBalance = (props) => {
       } else {
         const edit = {
           ...props.data,
-          choiceDesc: newDesc,
+          contents: newDesc,
         };
         props.setOnEdit(false);
-        return axios.patch("http://localhost:3001/balances/" + props.id, edit);
+        return axios.patch(`${AXIOS_ADDRESS}/balances/${props.id}`, edit);
       }
     }
   };
@@ -41,7 +43,7 @@ export const EditBalance = (props) => {
     <form onSubmit={onEditDescBalance}>
       <div>
         <label htmlFor="confirmPw">비밀번호</label>
-        <input
+        <InputStyle
           type="password"
           id="confirmPw"
           placeholder="비밀번호를 입력해주세요"
@@ -49,7 +51,7 @@ export const EditBalance = (props) => {
           value={checkPw}
         />
       </div>
-      <input
+      <InputStyle
         className="newDesc"
         onChange={onEditNewDesc}
         placeholder={props.value}
