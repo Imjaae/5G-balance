@@ -12,7 +12,7 @@ function Input({ setComments, comments }) {
   const { id } = useParams();
 
   const onSubmitHandler = (nickName, contents, password, postId) => {
-    axios.post(`http://localhost:3001/comments`, {
+    axios.post(`https://json-server-vercel-mauve-nu.vercel.app/comments`, {
       nickName: nickName,
       contents: contents,
       id: uuidv4(),

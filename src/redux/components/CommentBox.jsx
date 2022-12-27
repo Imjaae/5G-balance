@@ -53,7 +53,10 @@ function CommentBox({ item, setComments, comments }) {
       const indexValue = comments.findIndex((comment) => {
         return comment.id === item.id;
       });
-      axios.patch(`http://localhost:3001/comments/${item.id}`, edit);
+      axios.patch(
+        `https://json-server-vercel-mauve-nu.vercel.app/comments/${item.id}`,
+        edit
+      );
       const updatedComment = [...comments];
       updatedComment[indexValue].contents = editContents;
       setComments(updatedComment);

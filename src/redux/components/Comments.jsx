@@ -13,7 +13,7 @@ function Comments({ comments, setComments }) {
 
   const fetchComments = async () => {
     const { data } = await axios.get(
-      `http://localhost:3001/comments/?postId=${id}`
+      `https://json-server-vercel-mauve-nu.vercel.app/comments/?postId=${id}`
     );
     setComments(data);
   };

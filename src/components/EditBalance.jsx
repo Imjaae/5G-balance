@@ -32,7 +32,10 @@ export const EditBalance = (props) => {
           choiceDesc: newDesc,
         };
         props.setOnEdit(false);
-        return axios.patch("http://localhost:3001/balances/" + props.id, edit);
+        return axios.patch(
+          "https://json-server-vercel-mauve-nu.vercel.app/balances/" + props.id,
+          edit
+        );
       }
     }
   };

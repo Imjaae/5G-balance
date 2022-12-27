@@ -71,7 +71,9 @@ export const BalanceContent = () => {
   const { isLoading, data } = useQuery(
     ["balance", id],
     async () => {
-      const res = await axios.get("http://localhost:3001/balances/" + id);
+      const res = await axios.get(
+        "https://json-server-vercel-mauve-nu.vercel.app/balances/" + id
+      );
       return res.data;
     },
     {

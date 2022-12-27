@@ -78,7 +78,9 @@ export const ComfirmModal = ({ confirm, setConfirm, password, id }) => {
       return;
     } else {
       navigate("/");
-      axios.delete(`http://localhost:3001/balances/${id}`);
+      axios.delete(
+        `https://json-server-vercel-mauve-nu.vercel.app/balances/${id}`
+      );
       localStorage.removeItem(id);
     }
   };

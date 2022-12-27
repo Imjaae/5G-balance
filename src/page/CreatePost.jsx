@@ -106,17 +106,3 @@ const Wrap = styled.main`
   flex-direction: column;
   padding: "20px";
 `;
-
-// const balanceBasic = [
-//   {
-//     id: "id",
-//     password: "비밀번호",
-//     nickname,
-//     choice1,
-//     choice1Rate,
-//     choice2,
-//     choice2Rate,
-//     choiceDesc,
-//     date,
-//   },
-// ];
