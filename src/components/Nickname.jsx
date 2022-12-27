@@ -41,15 +41,13 @@ function Nickname({ balance, setBalance }) {
               onChange={handleNicknameChange}
               id="nickname"
               type="text"
-              placeholder="최소 4자 이상 입력 가능"
-              autofocus
+              placeholder="영문과 한글 입력 가능"
             />
             <input
               onChange={handlePasswordChange}
               id="password"
               type="text"
-              placeholder="최소 4자 이상, 영문과 숫자로만 입력 가능"
-              autofocus
+              placeholder="영문과 숫자 조합으로 입력 가능(4자 이상)"
             />
           </Divdiv>
         </NicknameStyleObj>
@@ -59,18 +57,6 @@ function Nickname({ balance, setBalance }) {
 }
 
 export default Nickname;
-
-export const nicknameCheck = (id) => {
-  let regExp = /^.*(?=^.{4,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
-  // 영문 & 4글자 이상 12글자 이하 & 숫자 포함
-  return regExp.test(id);
-};
-
-export const passwordCheck = (id) => {
-  let regExp = /^[A-Za-z0-9]{4,12}$/;
-  // 영문 & 4글자 이상 12글자 이하 & 숫자 포함 & 특수 문자 미포함
-  return regExp.test(id);
-};
 
 const NicknameStyleObj = styled.div`
   margin: 20px 50px 20px 50px;

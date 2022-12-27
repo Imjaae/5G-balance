@@ -5,49 +5,46 @@ import Content from "../components/Content";
 import Nickname from "../components/Nickname";
 import Swal from "sweetalert2";
 
+//닉네임 input box 유효성 검증
 export const nicknameCheck = (id) => {
-  let regExp = /^.*(?=^.{4,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
-  // 영문 & 4글자 이상 12글자 이하 & 숫자 포함
+  let regExp = /^[ㄱ-ㅎ가-힣ㅏ-ㅣa-zA-Z]+$/;
+  // 영문 & 한글 입력 가능
   return regExp.test(id);
 };
 
+//비밀번호 input box 유효성 검증
 export const passwordCheck = (id) => {
-  let regExp = /^[A-Za-z0-9]{4,12}$/;
-  // 영문 & 4글자 이상 12글자 이하 & 숫자 포함 & 특수 문자 미포함
+  let regExp = /^(?=.*[a-zA-Z])(?=.*[0-9]).{4,20}$/;
+  // 영문, 숫자 조합 4자리 이상
   return regExp.test(id);
 };
 
 const CreatePost = () => {
   const initialState = {
-    titleA: "왼쪽게임",
-    titleB: "오른쪽게임",
+    choice1: "왼쪽게임",
+    choice2: "오른쪽게임",
     contents: "",
     nickname: "닉네임",
     password: "비밀번호",
   };
 
-  //닉네임과 비밀번호 input box 유효성 검증
-  const nicknameCheck = (id) => {
-    let regExp = /^.*(?=^.{4,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
-    // 영문 & 4글자 이상 12글자 이하 & 숫자 포함
-    return regExp.test(id);
-  };
   const [balance, setBalance] = useState(initialState);
   console.log(balance);
 
   // 밸런스 게임 만들기, 설명 input box 유효성 검증
   const handleContentsSubmit = () => {
-    const A = balance.titleA.length;
-    const B = balance.titleB.length;
+    const A = balance.choice1.length;
+    const B = balance.choice2.length;
     const C = balance.contents.length;
-    const D = balance.nickname.length;
-    const E = balance.password.length;
 
-    console.log(A, B, C, D, E);
+    console.log(nicknameCheck(balance.nickname));
     if (!nicknameCheck(balance.nickname)) {
-      window.alert("error");
+      window.alert("Nickname error");
     }
-    if (A < 1 || B < 1 || C < 1 || D < 4 || E < 4) {
+    if (!passwordCheck(balance.password)) {
+      window.alert("Password error");
+    }
+    if (A < 1 || B < 1 || C < 1) {
       Swal.fire({
         title: "빈 칸이 있습니다. 채워주세요.",
         text: "한 글자 이상 적어주세요.",
@@ -65,7 +62,6 @@ const CreatePost = () => {
 
   return (
     <>
-      <Header>5G = Balance</Header>
       <WWrap>
         <Wrap
           style={{
@@ -88,11 +84,6 @@ const CreatePost = () => {
   );
 };
 export default CreatePost;
-
-const Header = styled.header`
-  padding: "20px";
-  background-color: "#e8c7fc";
-`;
 
 const WWrap = styled.div`
   width: 100vw;
