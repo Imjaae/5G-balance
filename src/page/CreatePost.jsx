@@ -37,6 +37,9 @@ const CreatePost = () => {
     contents: "",
     nickname: "닉네임",
     password: "비밀번호",
+    choice1Rate: 0,
+    choice2Rate: 0,
+    votes: 0,
   };
 
   const [balance, setBalance] = useState(initialState);
@@ -72,6 +75,9 @@ const CreatePost = () => {
       nickname: balance.nickname,
       password: balance.password,
       date: date,
+      choice1Rate: 0,
+      choice2Rate: 0,
+      votes: 0,
     };
 
     // json-server

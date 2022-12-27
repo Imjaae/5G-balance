@@ -51,6 +51,7 @@ function CommentBox({ item, setComments, comments }) {
   };
 
   const onClickFakeButton = () => [setIsedit(true)];
+  const onClickFakeDeleteBotton = () => [setIsedit(true)];
   return (
     <CommentedBox>
       <ItemNickname>{item.nickName}</ItemNickname>
@@ -60,7 +61,7 @@ function CommentBox({ item, setComments, comments }) {
         <>
           <EditInput
             value={editContents}
-            placeholder="수정값을 입력하세요"
+            placeholder={editContents}
             type="text"
             onChange={(ev) => {
               setEditContents(ev.target.value);
@@ -75,7 +76,6 @@ function CommentBox({ item, setComments, comments }) {
           />
         </>
       )}
-
       {isEdit ? (
         <EditBox
           type="button"
@@ -91,8 +91,12 @@ function CommentBox({ item, setComments, comments }) {
           삭제
         </EditBox>
       ) : (
-        <button onClick={onClickDeleteButton}>삭제</button>
+        <button onClick={onClickFakeDeleteBotton}>삭제</button>
       )}
+      //{" "}
+      <EditBox type="button" onClick={onClickDeleteButtonHandler}>
+        // 삭제 //{" "}
+      </EditBox>
     </CommentedBox>
   );
 }
