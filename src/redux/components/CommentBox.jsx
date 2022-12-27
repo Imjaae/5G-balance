@@ -7,12 +7,14 @@ import axios from "axios";
 function CommentBox({ item, setComments, comments }) {
   const [editContents, setEditContents] = useState("");
   const [isEdit, setIsedit] = useState(false);
+  const [checkPw, setCheckPw] = useState("");
 
-  const onClickEditButtonHandler = (contentsId) => {
+  const onClickEditButtonHandler = (contentsId, con) => {
     setIsedit(!isEdit);
     if (!editContents) {
       return alert("입력");
     }
+
     axios.patch(`http://localhost:3001/comments/${contentsId}`, {
       contents: editContents,
     });
@@ -49,20 +51,7 @@ function CommentBox({ item, setComments, comments }) {
         />
       )}
 
-      <input
-        type="text"
-        placeholder="비밀번호"
-        style={{
-          width: "10%",
-          display: "flex",
-          flexDirection: "inherit",
-          height: "100%",
-          alignItems: "center",
-          textAlign: "center",
-          margin: "0px 10px",
-          placeSelf: "center",
-        }}
-      />
+      <InputPw value={checkPw} type="text" placeholder="비밀번호" style={{}} />
       <EditBox type="button" onClick={() => onClickEditButtonHandler(item.id)}>
         {isEdit ? "닫기" : "수정"}
       </EditBox>
@@ -126,6 +115,17 @@ const EditInput = styled.input`
   ::placeholder {
     color: white;
   }
+`;
+
+const InputPw = styled.input`
+  width: 10%;
+  display: flex;
+  flex-direction: inherit;
+  height: 100%;
+  align-items: center;
+  text-align: center;
+  margin: 0px 10px;
+  place-self: center;
 `;
 
 export default CommentBox;

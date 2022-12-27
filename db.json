@@ -1,11 +1,23 @@
 {
-  "balances": [],
+  "balances": [
+    {
+      "id": 166,
+      "nickname": "이기영",
+      "password": "password11",
+      "choice1": "똥맛카레",
+      "choice2": "카레맛똥",
+      "choice1Rate": 32,
+      "choice2Rate": 74,
+      "choiceDesc": "밸런스의 왕",
+      "votes": 11
+    }
+  ],
   "comments": [
     {
       "nickName": "sasdwd",
       "contents": "asdasd",
       "password": "12312",
-      "id": 1
+      "id": 166
     },
     {
       "nickName": "dasd",
