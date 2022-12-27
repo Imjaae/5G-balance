@@ -73,16 +73,15 @@ export const BalanceContent = () => {
       return res.data;
     },
     {
-      refetchInterval: 1000,
+      refetchInterval: 500,
     }
   );
-
   useEffect(() => {
     if (localStorage.getItem(id) !== null) {
       setVoteData(localStorage.getItem(id));
       setIsVote(true);
     }
-  }, [data]);
+  }, []);
 
   const onVoteChoiceOne = (props) => {
     const edit = {
@@ -163,10 +162,10 @@ export const BalanceContent = () => {
                 id={data.id}
                 data={data}
                 setOnEdit={setOnEdit}
-                value={data.choiceDesc}
+                value={data.contents}
               />
             ) : (
-              <div>{data.choiceDesc}</div>
+              <div>{data.contents}</div>
             )}
           </Desc>
           {isVote ? (
@@ -176,7 +175,6 @@ export const BalanceContent = () => {
                   <span>{data.choice1Rate}</span>
                 </Bar>
               ) : null}
-
               {data.choice2Rate > 0 ? <span>{data.choice2Rate}</span> : null}
             </StatusBar>
           ) : null}

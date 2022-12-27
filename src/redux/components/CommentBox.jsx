@@ -69,7 +69,7 @@ function CommentBox({ item, setComments, comments }) {
           <InputPw
             value={checkPw}
             type="text"
-            placeholder="비밀번호"
+            placeholder="비밀번호 (숫자만 입력)"
             onChange={onChangePw}
             style={{}}
           />
@@ -86,9 +86,13 @@ function CommentBox({ item, setComments, comments }) {
       ) : (
         <button onClick={onClickFakeButton}>수정</button>
       )}
-      <EditBox type="button" onClick={onClickDeleteButtonHandler}>
-        삭제
-      </EditBox>
+      {isEdit ? (
+        <EditBox type="button" onClick={onClickDeleteButtonHandler}>
+          삭제
+        </EditBox>
+      ) : (
+        <button onClick={onClickDeleteButton}>삭제</button>
+      )}
     </CommentedBox>
   );
 }

@@ -30,7 +30,7 @@ export const EditBalance = (props) => {
       } else {
         const edit = {
           ...props.data,
-          choiceDesc: newDesc,
+          contents: newDesc,
         };
         props.setOnEdit(false);
         return axios.patch(`${AXIOS_ADDRESS}/balances/${props.id}`, edit);
