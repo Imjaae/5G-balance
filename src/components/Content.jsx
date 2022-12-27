@@ -24,7 +24,7 @@ function Content({ balance, setBalance, handleContentsSubmit }) {
         <textarea
           onChange={handleContentChange}
           type="text"
-          placeholder="최대 30자 이하로 작성해주세요."
+          placeholder="최대 30자 이하 입력 가능"
           autofocus
         />
         <br />

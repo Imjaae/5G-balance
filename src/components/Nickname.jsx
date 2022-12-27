@@ -1,7 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-function Nickname() {
+function Nickname({ balance, setBalance }) {
+  const handleNicknameChange = (event) => {
+    setBalance({ ...balance, nickname: event.target.value });
+  };
+  const handlePasswordChange = (event) => {
+    setBalance({ ...balance, password: event.target.value });
+  };
   return (
     <>
       <h3>닉네임과 비밀번호를 설정해주세요.</h3>
@@ -31,11 +37,18 @@ function Nickname() {
           </h4>
           <br />
           <Divdiv>
-            <input id="nickname" type="text" />
             <input
+              onChange={handleNicknameChange}
+              id="nickname"
+              type="text"
+              placeholder="최소 4자 이상 입력 가능"
+              autofocus
+            />
+            <input
+              onChange={handlePasswordChange}
               id="password"
               type="text"
-              placeholder="영문과 숫자로만 설정해주세요."
+              placeholder="최소 4자 이상, 영문과 숫자로만 입력 가능"
               autofocus
             />
           </Divdiv>
@@ -46,6 +59,18 @@ function Nickname() {
 }
 
 export default Nickname;
+
+export const nicknameCheck = (id) => {
+  let regExp = /^.*(?=^.{4,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+  // 영문 & 4글자 이상 12글자 이하 & 숫자 포함
+  return regExp.test(id);
+};
+
+export const passwordCheck = (id) => {
+  let regExp = /^[A-Za-z0-9]{4,12}$/;
+  // 영문 & 4글자 이상 12글자 이하 & 숫자 포함 & 특수 문자 미포함
+  return regExp.test(id);
+};
 
 const NicknameStyleObj = styled.div`
   margin: 20px 50px 20px 50px;
