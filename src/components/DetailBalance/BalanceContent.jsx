@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { EditBalance } from "./EditBalance";
-import { Button } from "../UI/Button";
+import { Button } from "../../UI/Button";
 import { StatusBar } from "./statusbar/StatusBar";
 import { Bar } from "./statusbar/Bar";
 import { useQuery } from "react-query";
 import { ComfirmModal } from "./ConfirmModal";
-import AXIOS_ADDRESS from "../modules/AxiosAddress";
+import AXIOS_ADDRESS from "../../modules/AxiosAddress";
+import Swal from "sweetalert2";
 
 const ContentHeader = styled.header`
   display: flex;
@@ -50,8 +51,7 @@ const Section = styled.section`
   justify-content: space-around;
   align-items: center;
   padding: 30px 0;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  border-top: 1px solid #cccccc;
   & button {
     padding: 10px 20px;
   }
@@ -104,8 +104,38 @@ export const BalanceContent = () => {
     localStorage.setItem(id, "choice2");
     setIsVote(!isVote);
   };
+  // setConfirm(!confirm);
+  const [getbools, setbools] = useState(false);
   const onDeleteHandler = () => {
-    setConfirm(!confirm);
+    (async () => {
+      const { value: data } = await Swal.fire({
+        title: "Balance 삭제.",
+        text: "비밀번호를 입력 하세요.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "확인",
+        cancelButtonText: "취소",
+
+        input: "text",
+        inputPlaceholder: "비밀번호를 입력..",
+      }).then((result) => {
+        setbools(true);
+      });
+      if (getbools && data === data.password) {
+        axios.delete(`${AXIOS_ADDRESS}/balances/${id}`);
+        localStorage.removeItem(id);
+        setbools(false);
+      } else {
+        Swal.fire({
+          title: "Error",
+          text: "비밀번호가 틀렸습니다.",
+          icon: "error",
+        });
+      }
+      // 이후 처리되는 내용.
+    })();
   };
 
   const onToggleEditHandler = () => {

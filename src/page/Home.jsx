@@ -10,7 +10,7 @@ export const Home = () => {
   useEffect(() => {
     dispatch(__getBestBalance());
     dispatch(__getBalances());
-  }, [dispatch]);
+  }, []);
 
   if (isLoding) {
     return <div>로딩 중...</div>;

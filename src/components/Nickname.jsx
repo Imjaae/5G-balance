@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import InputStyle from "../UI/InputStyle";
 
 function Nickname({ balance, setBalance }) {
   const handleNicknameChange = (event) => {
@@ -37,13 +38,13 @@ function Nickname({ balance, setBalance }) {
           </h4>
           <br />
           <Divdiv>
-            <input
+            <InputStyle
               onChange={handleNicknameChange}
               id="nickname"
               type="text"
               placeholder="영문과 한글 입력 가능"
             />
-            <input
+            <InputStyle
               onChange={handlePasswordChange}
               id="password"
               type="text"
@@ -61,25 +62,25 @@ export default Nickname;
 const NicknameStyleObj = styled.div`
   margin: 20px 50px 20px 50px;
   padding: 20px;
-  border-bottom: 1px solid black;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  input {
-    border: 0 solid black;
-    background-color: #d6d4ce;
-    height: 3vh;
-    width: 23vw;
-    margin-left: 20px;
-    margin-right: 20px;
-  }
+
   h4 {
     display: flex;
     width: 100%;
     justify-content: space-around;
   }
 `;
+// input {
+//   border: 0 solid black;
+//   background-color: #d6d4ce;
+//   height: 3vh;
+//   width: 23vw;
+//   margin-left: 20px;
+//   margin-right: 20px;
+// }
 const Divdiv = styled.div`
   display: flex;
 `;

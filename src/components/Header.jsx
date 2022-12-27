@@ -9,11 +9,14 @@ const Header = () => {
   const goCreatePost = () => {
     navigate("/post");
   };
+  const goHome = () => {
+    navigate("/");
+  };
 
   return (
     <HeaderBox>
       <HeaderInnerBox></HeaderInnerBox>
-      <HeaderLink to="/">5G = BALANCE</HeaderLink>
+      <HeaderLink onClick={goHome}>5G = BALANCE</HeaderLink>
       <HeaderInnerBox>
         <ButtonStyles onClick={goCreatePost} textColor="7095F4">
           게임만들기
@@ -40,7 +43,7 @@ const HeaderInnerBox = styled.div`
   text-align: right;
 `;
 
-const HeaderLink = styled(Link)`
+const HeaderLink = styled.div`
   width: 33.333%;
   text-align: center;
   text-decoration: none;

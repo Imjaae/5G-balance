@@ -12,7 +12,7 @@ export const StatusBar = styled.div`
   font-size: 0.8rem;
   color: white;
   & span {
-    padding-left: 10px;
+    padding: 0 10px;
   }
   & span::after {
     content: "표";

@@ -14,7 +14,7 @@ export const __getBalances = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const data = await axios.get(
-        `${AXIOS_ADDRESS}/balances/?_sort=date&_order=asc`
+        `${AXIOS_ADDRESS}/balances/?_sort=date&_order=desc`
       );
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {

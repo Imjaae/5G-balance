@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Input from "../components/Input";
-import Content from "../components/Content";
+import Content from "../components/DetailBalance/Content";
 import Nickname from "../components/Nickname";
 import Swal from "sweetalert2";
 import axios from "axios";
@@ -32,11 +32,11 @@ const CreatePost = () => {
   const navigate = useNavigate();
 
   const initialState = {
-    choice1: "왼쪽게임",
-    choice2: "오른쪽게임",
+    choice1: "",
+    choice2: "",
     contents: "",
-    nickname: "닉네임",
-    password: "비밀번호",
+    nickname: "",
+    password: "",
     choice1Rate: 0,
     choice2Rate: 0,
     votes: 0,

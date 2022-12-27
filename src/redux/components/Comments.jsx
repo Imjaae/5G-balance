@@ -38,7 +38,7 @@ function Comments({ comments, setComments }) {
 export default Comments;
 
 const CommentsBox = styled.section`
-  background-color: #5a7f6d;
+  border-bottom: solid gray 0.5px;
   width: 70%;
   height: 100%;
   padding: 30px;
