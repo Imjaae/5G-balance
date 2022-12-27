@@ -1,4 +1,3 @@
-// import { Header } from "./components/Header";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Auth } from "./page/Auth";
 import { Detail } from "./page/Detail";
@@ -9,9 +8,8 @@ import { Signup } from "./page/Signup";
 
 function App() {
   return (
-    <div>
+    <>
       <BrowserRouter>
-        {/* <Header /> */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/auth" element={<Auth />} />
@@ -21,7 +19,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </>
   );
 }
 
