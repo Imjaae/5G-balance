@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "../UI/Button";
+import AXIOS_ADDRESS from "../modules/AxiosAddress";
 
 const Modal = styled.div`
   background-color: #ececec;
@@ -78,9 +79,7 @@ export const ComfirmModal = ({ confirm, setConfirm, password, id }) => {
       return;
     } else {
       navigate("/");
-      axios.delete(
-        `https://json-server-vercel-mauve-nu.vercel.app/balances/${id}`
-      );
+      axios.delete(`${AXIOS_ADDRESS}/balances/${id}`);
       localStorage.removeItem(id);
     }
   };

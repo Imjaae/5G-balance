@@ -1,15 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
-
 import { EditBalance } from "./EditBalance";
 import { Button } from "../UI/Button";
 import { StatusBar } from "./statusbar/StatusBar";
 import { Bar } from "./statusbar/Bar";
 import { useQuery } from "react-query";
 import { ComfirmModal } from "./ConfirmModal";
+import AXIOS_ADDRESS from "../modules/AxiosAddress";
 
 const ContentHeader = styled.header`
   display: flex;
@@ -62,7 +61,6 @@ const Section = styled.section`
 `;
 
 export const BalanceContent = () => {
-  const navigate = useNavigate();
   const { id } = useParams();
   const [isVote, setIsVote] = useState(false);
   const [onEdit, setOnEdit] = useState(false);
@@ -71,9 +69,7 @@ export const BalanceContent = () => {
   const { isLoading, data } = useQuery(
     ["balance", id],
     async () => {
-      const res = await axios.get(
-        "https://json-server-vercel-mauve-nu.vercel.app/balances/" + id
-      );
+      const res = await axios.get(`${AXIOS_ADDRESS}/balances/${id}`);
       return res.data;
     },
     {
@@ -94,7 +90,7 @@ export const BalanceContent = () => {
       choice1Rate: data.choice1Rate + 1,
       votes: data.votes + 1,
     };
-    axios.patch(`http://localhost:3001/balances/${id}`, edit);
+    axios.patch(`${AXIOS_ADDRESS}/balances/${id}`, edit);
     localStorage.setItem(id, "choice1");
     setIsVote(!isVote);
   };
@@ -105,11 +101,10 @@ export const BalanceContent = () => {
       choice2Rate: data.choice2Rate + 1,
       votes: data.votes + 1,
     };
-    axios.patch(`http://localhost:3001/balances/${id}`, edit);
+    axios.patch(`${AXIOS_ADDRESS}/balances/${id}`, edit);
     localStorage.setItem(id, "choice2");
     setIsVote(!isVote);
   };
-
   const onDeleteHandler = () => {
     setConfirm(!confirm);
   };

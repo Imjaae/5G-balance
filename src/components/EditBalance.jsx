@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Button } from "../UI/Button";
+import AXIOS_ADDRESS from "../modules/AxiosAddress";
 
 export const EditBalance = (props) => {
   const [newDesc, setNewDesc] = useState("");
@@ -32,10 +33,7 @@ export const EditBalance = (props) => {
           choiceDesc: newDesc,
         };
         props.setOnEdit(false);
-        return axios.patch(
-          "https://json-server-vercel-mauve-nu.vercel.app/balances/" + props.id,
-          edit
-        );
+        return axios.patch(`${AXIOS_ADDRESS}/balances/${props.id}`, edit);
       }
     }
   };

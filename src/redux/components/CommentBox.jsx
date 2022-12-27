@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
 import axios from "axios";
-// import { each } from "immer/dist/internal";
+import AXIOS_ADDRESS from "../../modules/AxiosAddress";
 
 function CommentBox({ item, setComments, comments }) {
   const [editContents, setEditContents] = useState("");
@@ -13,32 +13,7 @@ function CommentBox({ item, setComments, comments }) {
     setCheckPw(event.target.value);
   };
 
-  // const onClickEditButtonHandler = (contentsId) => {
-  //   setIsedit(!isEdit);
-  //   if (!editContents) {
-  //     return alert("입력");
-  //   }
-
-  // axios.patch(`http://localhost:3001/comments/${contentsId}`, {
-  //   contents: editContents,
-  // });
-  //   // setComments()
-
-  //   const indexValue = comments.findIndex((comment) => {
-  //     return comment.id === contentsId;
-  //   });
-  //   const updatedComment = [...comments];
-  //   updatedComment[indexValue].contents = editContents;
-  //   setComments(updatedComment);
-  //   setEditContents("");
-  // };
-
   const onClickEditButtonHandler = (event) => {
-    // event.preventDefault();
-
-    // if (!editContents) {
-    //   return;
-    // }
     if (checkPw !== item.password) {
       alert("잘못된 비밀번호를 입력했거나 비밀번호를 입력하지 않았습니다!");
       setCheckPw("");
@@ -53,10 +28,7 @@ function CommentBox({ item, setComments, comments }) {
       const indexValue = comments.findIndex((comment) => {
         return comment.id === item.id;
       });
-      axios.patch(
-        `https://json-server-vercel-mauve-nu.vercel.app/comments/${item.id}`,
-        edit
-      );
+      axios.patch(`${AXIOS_ADDRESS}/comments/${item.id}`, edit);
       const updatedComment = [...comments];
       updatedComment[indexValue].contents = editContents;
       setComments(updatedComment);
@@ -65,21 +37,14 @@ function CommentBox({ item, setComments, comments }) {
     }
   };
 
-  // const onClickDeleteButtonHandler = (contentsId) => {
-  //   axios.delete(`http://localhost:3001/comments/${contentsId}`);
-  //   setComments(comments.filter((comment) => comment.id !== contentsId));
-  // };
-
   const onClickDeleteButtonHandler = (event) => {
     event.preventDefault();
     if (checkPw !== item.password) {
-      console.log(item.postId);
       alert("비밀번호를 입력하지 않았거나 비밀번호가 다릅니다!");
       setCheckPw("");
-      // document.querySelector(".confirmPw").focus();
       return;
     } else {
-      axios.delete(`http://localhost:3001/comments/${item.id}`);
+      axios.delete(`${AXIOS_ADDRESS}/comments/${item.id}`);
       setComments(comments.filter((comment) => comment.id !== item.id));
       setCheckPw("");
     }
@@ -98,7 +63,6 @@ function CommentBox({ item, setComments, comments }) {
             placeholder="수정값을 입력하세요"
             type="text"
             onChange={(ev) => {
-              // console.log(ev.target.value);
               setEditContents(ev.target.value);
             }}
           />
@@ -111,14 +75,6 @@ function CommentBox({ item, setComments, comments }) {
           />
         </>
       )}
-
-      {/* <InputPw
-        value={checkPw}
-        type="text"
-        placeholder="비밀번호"
-        onChange={onChangePw}
-        style={{}}
-      /> */}
 
       {isEdit ? (
         <EditBox
@@ -155,14 +111,6 @@ const EditBox = styled.button`
   align-self: center;
   cursor: pointer;
 `;
-
-// const Input = styled.input`
-//   background-color: #5a7f6d;
-//   color: white;
-//   box-shadow: none;
-//   border: 0.5px solid white;
-//   width: 98%;
-// `;
 
 const ItemNickname = styled.div`
   margin-right: 20px;

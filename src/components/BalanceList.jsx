@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import styled from 'styled-components';
-import Balance from './Balance';
+import React from "react";
+import { useSelector } from "react-redux";
+import styled from "styled-components";
+import Balance from "./Balance";
 
 const BalanceListBox = styled.div`
   width: 100%;

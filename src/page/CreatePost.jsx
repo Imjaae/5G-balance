@@ -6,6 +6,7 @@ import Nickname from "../components/Nickname";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import AXIOS_ADDRESS from "../modules/AxiosAddress";
 
 //닉네임 input box 유효성 검증
 export const nicknameCheck = (id) => {
@@ -23,7 +24,6 @@ export const passwordCheck = (id) => {
 
 // 최신순을 알기 위한 날짜
 const date = new Date();
-console.log(date);
 
 // 게임 만들기 버튼 클릭 시 메인 페이지로 이동
 // useNavigate를 사용하기위한 변수선언
@@ -40,8 +40,6 @@ const CreatePost = () => {
   };
 
   const [balance, setBalance] = useState(initialState);
-  console.log(balance);
-
   // 밸런스 게임 만들기, 설명 input box 유효성 검증
   const handleContentsSubmit = async () => {
     const A = balance.choice1.length;
@@ -77,19 +75,12 @@ const CreatePost = () => {
     };
 
     // json-server
-    await axios.post(
-      "https://json-server-vercel-mauve-nu.vercel.app/balances",
-      CreatePostData
-    );
-    console.log(balance);
+    await axios.post(`${AXIOS_ADDRESS}/balances`, CreatePostData);
     navigate("/");
   };
 
   const getBalances = async () => {
-    const res = await axios.get(
-      "https://json-server-vercel-mauve-nu.vercel.app/balances"
-    );
-    console.log(res);
+    const res = await axios.get(`${AXIOS_ADDRESS}/balances`);
     return res.data;
   };
   useEffect(() => {

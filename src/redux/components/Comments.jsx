@@ -1,27 +1,22 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import CommentBox from "./CommentBox";
 import { useParams } from "react-router-dom";
+import AXIOS_ADDRESS from "../../modules/AxiosAddress";
+
 function Comments({ comments, setComments }) {
   // 수정버튼 기능구현
-  // const updateComments = (event) => {
-  //   this.setComments({ [event.target.Comments]: event.target.value });
-  //   console.log(event);
-  // };
   const { id } = useParams();
 
   const fetchComments = async () => {
-    const { data } = await axios.get(
-      `https://json-server-vercel-mauve-nu.vercel.app/comments/?postId=${id}`
-    );
+    const { data } = await axios.get(`${AXIOS_ADDRESS}/comments/?postId=${id}`);
     setComments(data);
   };
 
   useEffect(() => {
     fetchComments();
   }, []);
-  // console.log(comments);
 
   // 댓글 삭제기능 구현
 
@@ -49,6 +44,6 @@ const CommentsBox = styled.section`
   padding: 30px;
   margin: 30px;
   color: white;
-  fontsize: 30px;
+  font-size: 30px;
   display: inline-block;
 `;

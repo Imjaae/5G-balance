@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import { useParams } from "react-router-dom";
+import AXIOS_ADDRESS from "../../modules/AxiosAddress";
 
 function Input({ setComments, comments }) {
   const [contents, setContents] = useState("");
@@ -12,15 +13,13 @@ function Input({ setComments, comments }) {
   const { id } = useParams();
 
   const onSubmitHandler = (nickName, contents, password, postId) => {
-    axios.post(`https://json-server-vercel-mauve-nu.vercel.app/comments`, {
+    axios.post(`${AXIOS_ADDRESS}/comments`, {
       nickName: nickName,
       contents: contents,
       id: uuidv4(),
       postId: id,
       password: password,
     });
-    console.log(id);
-    // console.log("event :", event.target[0].value);
 
     const newComments = {
       nickName: nickName,
@@ -28,10 +27,7 @@ function Input({ setComments, comments }) {
       id: uuidv4(),
       postId: id,
       password: password,
-
-      // isDone: false(),
     };
-    // console.log(newComments);
 
     setComments((prev) => {
       return [...prev, newComments];
@@ -39,7 +35,6 @@ function Input({ setComments, comments }) {
     setNickname("");
     setContents("");
     setPassword("");
-    // console.log(event.target.value);
   };
 
   const handleNicknameButtonClick = (event) => {
@@ -51,7 +46,6 @@ function Input({ setComments, comments }) {
   };
 
   const passwordRegEx = /^[0-9]*$/;
-  // const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
   const handlePasswordButtonClick = (password) => {
     if (password.match(passwordRegEx) === null) {
       alert("숫자만 입력해 주세요 ❌");
@@ -60,10 +54,6 @@ function Input({ setComments, comments }) {
   };
 
   const addCommentButtonClick = (e) => {
-    // console.log({ contents }, { nickname }, { password });
-    // console.log(contents);
-    // console.log(password);
-    // console.log(nickname);
     if (contents === "") {
       alert("댓글을 입력하세요🔥");
       return e.preventDefault();

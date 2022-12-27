@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import AXIOS_ADDRESS from "../../modules/AxiosAddress";
 
 const initialState = {
   balances: [],
@@ -13,7 +14,7 @@ export const __getBalances = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const data = await axios.get(
-        "https://json-server-vercel-mauve-nu.vercel.app/balances/?_sort=date&_order=asc"
+        `${AXIOS_ADDRESS}/balances/?_sort=date&_order=asc`
       );
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
@@ -27,7 +28,7 @@ export const __getBestBalance = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const bestData = await axios.get(
-        "https://json-server-vercel-mauve-nu.vercel.app/balances/?_sort=votes&_order=desc&_limit=3"
+        `${AXIOS_ADDRESS}/balances/?_sort=votes&_order=desc&_limit=3`
       );
       return thunkAPI.fulfillWithValue(bestData.data);
     } catch (error) {
