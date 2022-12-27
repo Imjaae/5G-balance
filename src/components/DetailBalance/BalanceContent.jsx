@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { EditBalance } from "./EditBalance";
 import { Button } from "../../UI/Button";
@@ -105,35 +105,40 @@ export const BalanceContent = () => {
     setIsVote(!isVote);
   };
   // setConfirm(!confirm);
-  const [getbools, setbools] = useState(false);
+  const navigate = useNavigate();
   const onDeleteHandler = () => {
     (async () => {
-      const { value: data } = await Swal.fire({
+      await Swal.fire({
         title: "Balance 삭제.",
         text: "비밀번호를 입력 하세요.",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
+        confirmButtonColor: "black",
+        cancelButtonColor: "black",
         confirmButtonText: "확인",
         cancelButtonText: "취소",
 
         input: "text",
         inputPlaceholder: "비밀번호를 입력..",
       }).then((result) => {
-        setbools(true);
+        console.log(result);
+        if (result.isConfirmed && result.value === data.password) {
+          axios.delete(`${AXIOS_ADDRESS}/balances/${id}`);
+          localStorage.removeItem(id);
+          navigate("/");
+        } else if (result.isDismissed) {
+          return;
+        } else {
+          Swal.fire({
+            title: "Error",
+            text: "비밀번호가 틀렸습니다.",
+            icon: "error",
+            showConfirmButton: true,
+            confirmButtonColor: "black",
+          });
+        }
       });
-      if (getbools && data === data.password) {
-        axios.delete(`${AXIOS_ADDRESS}/balances/${id}`);
-        localStorage.removeItem(id);
-        setbools(false);
-      } else {
-        Swal.fire({
-          title: "Error",
-          text: "비밀번호가 틀렸습니다.",
-          icon: "error",
-        });
-      }
+
       // 이후 처리되는 내용.
     })();
   };

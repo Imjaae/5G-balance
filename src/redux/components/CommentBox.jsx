@@ -61,6 +61,8 @@ function CommentBox({ item, setComments, comments }) {
         text: "비밀번호를 입력하여 삭제 할 수 있습니다.",
         input: "text",
         inputPlaceholder: "비밀번호 입력(숫자)",
+        showConfirmButton: true,
+        confirmButtonColor: "black",
       });
 
       // 이후 처리되는 내용.
@@ -72,6 +74,8 @@ function CommentBox({ item, setComments, comments }) {
           title: "Error",
           text: "비밀번호가 틀렸습니다.",
           icon: "error",
+          showConfirmButton: true,
+          confirmButtonColor: "black",
         });
       }
     })();
