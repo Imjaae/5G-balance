@@ -54,32 +54,66 @@ function CommentBox({ item, setComments, comments }) {
   // };
 
   const onClickFakeButton = () => [setIsedit(true)];
+  // const onClickDeleteButton = () => {
+  //   (async () => {
+  //     const { value: getName } = await Swal.fire({
+  //       title: "댓글 삭제",
+  //       text: "비밀번호를 입력하여 삭제 할 수 있습니다.",
+  //       input: "text",
+  //       inputPlaceholder: "비밀번호 입력(숫자)",
+  //       showConfirmButton: true,
+  //       confirmButtonColor: "black",
+  //     });
+
+  //     // 이후 처리되는 내용.
+  //     if (getName === item.password) {
+  //       console.log(item.id);
+  //       await axios.delete(`${AXIOS_ADDRESS}/comments/${item.id}`);
+
+  //       setComments(comments.filter((comment) => comment.id !== item.id));
+  //       setCheckPw("");
+  //     } else {
+  //       Swal.fire({
+  //         title: "Error",
+  //         text: "비밀번호가 틀렸습니다.",
+  //         icon: "error",
+  //         showConfirmButton: true,
+  //         confirmButtonColor: "black",
+  //       });
+  //     }
+  //   })();
+  // };
+
   const onClickDeleteButton = () => {
     (async () => {
-      const { value: getName } = await Swal.fire({
+      await Swal.fire({
         title: "댓글 삭제",
         text: "비밀번호를 입력하여 삭제 할 수 있습니다.",
         input: "text",
         inputPlaceholder: "비밀번호 입력(숫자)",
         showConfirmButton: true,
         confirmButtonColor: "black",
-      });
+      }).then((result) => {
+        // 이후 처리되는 내용.
+        console.log(result.value);
+        if (result.value === item.password) {
+          axios.delete(`${AXIOS_ADDRESS}/comments/${item.id}`);
 
-      // 이후 처리되는 내용.
-      if (getName === item.password) {
-        await axios.delete(`${AXIOS_ADDRESS}/comments/${item.id}`);
-        window.location.reload();
-      } else {
-        Swal.fire({
-          title: "Error",
-          text: "비밀번호가 틀렸습니다.",
-          icon: "error",
-          showConfirmButton: true,
-          confirmButtonColor: "black",
-        });
-      }
+          setComments(comments.filter((comment) => comment.id !== item.id));
+          setCheckPw("");
+        } else {
+          Swal.fire({
+            title: "Error",
+            text: "비밀번호가 틀렸습니다.",
+            icon: "error",
+            showConfirmButton: true,
+            confirmButtonColor: "black",
+          });
+        }
+      });
     })();
   };
+
   const onClickCancleButton = () => [setIsedit(false)];
   // console.log(item.nickName);
 

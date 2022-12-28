@@ -73,7 +73,7 @@ export const BalanceContent = () => {
       return res.data;
     },
     {
-      refetchInterval: 500,
+      refetchInterval: 1000,
     }
   );
   useEffect(() => {
@@ -104,7 +104,6 @@ export const BalanceContent = () => {
     localStorage.setItem(id, "choice2");
     setIsVote(!isVote);
   };
-  // setConfirm(!confirm);
   const navigate = useNavigate();
   const onDeleteHandler = () => {
     (async () => {

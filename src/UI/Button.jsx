@@ -9,6 +9,7 @@ export const Button = (props) => {
       fontSize={props.fontSize}
       hoverColor={props.hoverColor}
       Margin={props.Margin}
+      refetch={props.refetch}
       //   기능
       onClick={props.onClick}
       disabled={props.disabled}
