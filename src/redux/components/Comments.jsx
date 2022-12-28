@@ -38,12 +38,13 @@ function Comments({ comments, setComments }) {
 export default Comments;
 
 const CommentsBox = styled.section`
-  border-bottom: solid gray 0.5px;
-  width: 70%;
-  height: 100%;
-  padding: 30px;
-  margin: 30px;
   color: white;
   font-size: 30px;
-  display: inline-block;
+  display: grid;
+  place-content: center;
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
 `;

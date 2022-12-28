@@ -81,6 +81,7 @@ function CommentBox({ item, setComments, comments }) {
     })();
   };
   const onClickCancleButton = () => [setIsedit(false)];
+  // console.log(item.nickName);
 
   return (
     <CommentedBox>
@@ -93,6 +94,7 @@ function CommentBox({ item, setComments, comments }) {
             value={editContents}
             placeholder={editContents}
             type="text"
+            style={{ width: "250px", padding: "25px 5px 1px 5px" }}
             onChange={(ev) => {
               setEditContents(ev.target.value);
             }}
@@ -102,7 +104,7 @@ function CommentBox({ item, setComments, comments }) {
             type="text"
             placeholder="비밀번호 "
             onChange={onChangePw}
-            style={{}}
+            style={{ width: "100px", padding: "25px 5px 1px 5px" }}
           />
         </>
       )}
@@ -114,7 +116,7 @@ function CommentBox({ item, setComments, comments }) {
           확인
         </EditBox>
       ) : (
-        <Button onClick={onClickFakeButton}>수정</Button>
+        <EditButton onClick={onClickFakeButton}>수정</EditButton>
       )}
       {isEdit ? (
         <EditBox type="button" onClick={onClickCancleButton}>
@@ -135,33 +137,68 @@ const CommentedBox = styled.h3`
   flex-direction: inherit;
   text-align: center;
   width: 100%;
-  border-bottom: solid 0.5px #878787;
-  font-size: 20px;
+  font-size: 15px;
 `;
 
 const EditBox = styled.button`
-  margin-left: 5px;
-  width: 5%;
-  height: 100%;
+  height: 37px;
+  margin: 15px 7px 0 7px;
+  padding: 8px 20px;
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: bottom;
   text-align: center;
   align-self: center;
   cursor: pointer;
+  background-color: transparent;
+  font-size: 1rem;
+  transition: 0.3s ease-in-out;
+  height: 35px;
+  border: 1px solid black;
+  :hover {
+    background-color: #f47070;
+    color: white;
+    transition: 0.5s;
+    border: 1px solid white;
+  }
+`;
+
+const EditButton = styled.button`
+  height: 35px;
+  margin: 15px 7px 0 20px;
+  padding: 8px 20px;
+  display: inline-block;
+  vertical-align: bottom;
+  text-align: center;
+  align-self: center;
+  cursor: pointer;
+  background-color: transparent;
+  font-size: 1rem;
+  transition: 0.3s ease-in-out;
+  border: 1px solid black;
+  :hover {
+    background-color: #7095f5;
+    color: white;
+    transition: 0.5s;
+    border: 1px solid white;
+  }
 `;
 
 const ItemNickname = styled.div`
-  margin-right: 20px;
-  border: solid 1px white;
-  padding: 10px;
-  width: 100px;
+
+  margin: 0 10px 0 40px;
+  border-bottom: 1px solid #878787;
+  padding: 25px 5px 1px 5px;
+  width: 60px;
   color: black;
+  text-align: left;
+
 `;
 
 const ItemContents = styled.div`
-  padding: 10px;
-  border-bottom: 0.5px solid;
-  width: 100%;
+  padding: 25px 5px 1px 5px;
+  margin-right: 10px;
+  border-bottom: 1px solid #878787;
+  width: 420px;
   text-align: left;
   color: #000;
 `;

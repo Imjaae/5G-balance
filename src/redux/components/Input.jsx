@@ -83,7 +83,7 @@ function Input({ setComments, comments }) {
     >
       <InputStyle
         style={{
-          width: "15%",
+          width: "80px",
         }}
         onChange={handleNicknameButtonClick}
         value={nickname}
@@ -91,7 +91,7 @@ function Input({ setComments, comments }) {
       />
       <InputStyle
         style={{
-          width: "40%",
+          width: "350px",
         }}
         onChange={handleTitleButtonClick}
         value={contents}
@@ -99,7 +99,7 @@ function Input({ setComments, comments }) {
       />
       <InputStyle
         style={{
-          width: "15%",
+          width: "100px",
         }}
         onChange={(e) => {
           handlePasswordButtonClick(e.target.value);
@@ -119,11 +119,11 @@ function Input({ setComments, comments }) {
 export default Input;
 
 const InputBox = styled.form`
-  padding: 30px;
-  margin: 30px;
+  padding: 10px;
+  margin: 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  text-align: center;
   width: 100%;
-  align-items: center;
   box-sizing: border-box;
 `;
