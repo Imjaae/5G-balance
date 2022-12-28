@@ -182,8 +182,10 @@ const EditButton = styled.button`
 const ItemNickname = styled.div`
   margin: 0 10px 0 40px;
   border-bottom: 1px solid #878787;
-  padding: 10px;
+  padding: 25px 5px 1px 5px;
   width: 60px;
+  color: black;
+  text-align: left;
 `;
 
 const ItemContents = styled.div`
