@@ -155,6 +155,7 @@ const ItemNickname = styled.div`
   border: solid 1px white;
   padding: 10px;
   width: 100px;
+  color: black;
 `;
 
 const ItemContents = styled.div`
