@@ -184,14 +184,12 @@ const EditButton = styled.button`
 `;
 
 const ItemNickname = styled.div`
-
   margin: 0 10px 0 40px;
   border-bottom: 1px solid #878787;
   padding: 25px 5px 1px 5px;
   width: 60px;
   color: black;
   text-align: left;
-
 `;
 
 const ItemContents = styled.div`
@@ -202,26 +200,5 @@ const ItemContents = styled.div`
   text-align: left;
   color: #000;
 `;
-
-// const EditInput = styled.input`
-//   border: 0.5px solid white;
-//   color: white;
-//   margin-left: 10px;
-//   padding-left: 20px;
-//   ::placeholder {
-//     color: white;
-//   }
-// `;
-// .
-// const InputPw = styled.input`
-//   width: 10%;
-//   display: flex;
-//   flex-direction: inherit;
-//   height: 100%;
-//   align-items: center;
-//   text-align: center;
-//   margin: 0px 10px;
-//   place-self: center;
-// `;
 
 export default CommentBox;
