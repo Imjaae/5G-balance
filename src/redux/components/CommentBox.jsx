@@ -61,6 +61,8 @@ function CommentBox({ item, setComments, comments }) {
         text: "비밀번호를 입력하여 삭제 할 수 있습니다.",
         input: "text",
         inputPlaceholder: "비밀번호 입력(숫자)",
+        showConfirmButton: true,
+        confirmButtonColor: "black",
       });
 
       // 이후 처리되는 내용.
@@ -72,6 +74,8 @@ function CommentBox({ item, setComments, comments }) {
           title: "Error",
           text: "비밀번호가 틀렸습니다.",
           icon: "error",
+          showConfirmButton: true,
+          confirmButtonColor: "black",
         });
       }
     })();
@@ -180,12 +184,14 @@ const EditButton = styled.button`
 `;
 
 const ItemNickname = styled.div`
+
   margin: 0 10px 0 40px;
   border-bottom: 1px solid #878787;
   padding: 25px 5px 1px 5px;
   width: 60px;
   color: black;
   text-align: left;
+
 `;
 
 const ItemContents = styled.div`
@@ -206,7 +212,7 @@ const ItemContents = styled.div`
 //     color: white;
 //   }
 // `;
-
+// .
 // const InputPw = styled.input`
 //   width: 10%;
 //   display: flex;
