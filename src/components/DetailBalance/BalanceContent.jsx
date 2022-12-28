@@ -64,7 +64,7 @@ export const BalanceContent = () => {
   const { id } = useParams();
   const [isVote, setIsVote] = useState(false);
   const [onEdit, setOnEdit] = useState(false);
-  const [voteData, setVoteData] = useState();
+  const [voteData, setVoteData] = useState("");
   const [confirm, setConfirm] = useState(false);
   const { isLoading, data } = useQuery(
     ["balance", id],
@@ -83,7 +83,7 @@ export const BalanceContent = () => {
     }
   }, []);
 
-  const onVoteChoiceOne = (props) => {
+  const onVoteChoiceOne = () => {
     const edit = {
       ...data,
       choice1Rate: data.choice1Rate + 1,
@@ -91,6 +91,7 @@ export const BalanceContent = () => {
     };
     axios.patch(`${AXIOS_ADDRESS}/balances/${id}`, edit);
     localStorage.setItem(id, "choice1");
+    setVoteData("choice1");
     setIsVote(!isVote);
   };
 
@@ -102,6 +103,7 @@ export const BalanceContent = () => {
     };
     axios.patch(`${AXIOS_ADDRESS}/balances/${id}`, edit);
     localStorage.setItem(id, "choice2");
+    setVoteData("choice2");
     setIsVote(!isVote);
   };
   const navigate = useNavigate();
@@ -165,7 +167,7 @@ export const BalanceContent = () => {
               <span>{data.nickname}</span>님의 게임입니다.
             </div>
             <div>
-              <Button onClick={onToggleEditHandler}>
+              <Button Margin="0 5px" onClick={onToggleEditHandler}>
                 {onEdit ? "닫기" : "수정"}
               </Button>
               <Button id={data.id} onClick={onDeleteHandler}>
